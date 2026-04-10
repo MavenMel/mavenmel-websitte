@@ -58,14 +58,14 @@ export function SobreMi() {
       {/* Story */}
 
      {/* Timeline de Experiencia Profesional Corregido */}
-<section className="py-24 bg-[#EEEDFE]/50 overflow-hidden">
+<section className="py-16 bg-[#EEEDFE]/50 overflow-hidden">
   <div className="max-w-7xl mx-auto px-6 lg:px-8">
     
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="text-center mb-20"
+      className="text-center mb-12"
     >
       <h2 className="text-4xl lg:text-5xl font-bold text-[#26215C] mb-6">Mi Trayectoria</h2>
     </motion.div>
