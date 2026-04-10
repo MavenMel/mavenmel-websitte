@@ -65,23 +65,23 @@ export function Contacto() {
               transition={{ duration: 0.6 }}
             >
               <div className="bg-gradient-to-br from-[#7F77DD] to-[#D4537E] rounded-2xl p-8 text-white mb-8">
-                <Calendar className="mb-4" size={40} />
-                <h2 className="text-3xl font-bold mb-3">
-                  Agenda una llamada
-                </h2>
-                <p className="text-xl text-white/90 mb-6">
-                  Sesión discovery de 20 minutos sin costo
-                </p>
-                <a
-                  href="https://calendly.com/mavenmel-info/30min"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-white text-[#7F77DD] px-6 py-3 rounded-xl hover:bg-white/90 transition-colors font-semibold"
-                >
-                  Ver disponibilidad
-                  <Calendar size={20} />
-                </a>
-              </div>
+  <Calendar className="mb-4" size={40} />
+  <h2 className="text-3xl font-bold mb-3">
+    Agenda una llamada
+  </h2>
+  <p className="text-xl text-white/90 mb-6">
+    Sesión discovery de 20 minutos sin costo
+  </p>
+  <div className="bg-white rounded-xl overflow-hidden">
+    <iframe
+      src="https://calendly.com/mavenmel-info/30min"
+      width="100%"
+      height="650"
+      frameBorder="0"
+      title="Agenda tu sesión"
+    />
+  </div>
+</div>
 
               {/* Contact Methods */}
               <div className="space-y-6">
