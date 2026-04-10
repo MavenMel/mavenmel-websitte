@@ -96,7 +96,7 @@ export function SobreMi() {
             <div className="bg-white p-6 rounded-2xl shadow-md border border-[#7F77DD]/10">
               <span className="text-[#7F77DD] font-bold text-sm">2025 - 2026</span>
               <h3 className="text-xl font-bold text-[#26215C]">GRUPO EVO (EVOAGRO)</h3>
-              <p className="text-[#7F77DD] font-semibold text-sm mb-3">Líder Tecnologías Digitalees (CDO)</p>
+              <p className="text-[#7F77DD] font-semibold text-sm mb-3">Líder Tecnologías Digitales (CDO)</p>
               <p className="text-xs text-[#26215C]/70">•Incremento del 80% en productividad comercial y automatización de 320 horas-hombre/mes.</p>
             </div>
           </motion.div>
