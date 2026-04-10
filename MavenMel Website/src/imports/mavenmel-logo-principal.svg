@@ -1,0 +1,16 @@
+<svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="lgmw" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#AFA9EC"/>
+      <stop offset="100%" stop-color="#7F77DD"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="112" height="132" rx="12" fill="url(#lgmw)" stroke="#534AB7" stroke-width="2"/>
+  <text x="20" y="32" font-family="system-ui, sans-serif" font-size="18" font-weight="400" fill="#26215C">26</text>
+  <g transform="translate(60, 75)">
+    <path d="M-28 15 L-28 -20 L-14 5 L0 -20 L0 15" fill="none" stroke="#26215C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M0 -20 L0 15 L14 -10 L28 15 L28 -20" fill="none" stroke="#26215C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="60" y="110" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#26215C" text-anchor="middle" letter-spacing="1">MAVEN MEL</text>
+  <text x="60" y="124" font-family="system-ui, sans-serif" font-size="7" fill="#3C3489" text-anchor="middle">Strategy &amp; Data</text>
+</svg>
