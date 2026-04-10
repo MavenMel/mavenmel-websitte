@@ -48,7 +48,7 @@ export function SobreMi() {
                 Hola, soy Melisa Tesillo
               </h1>
               <p className="text-2xl text-[#7F77DD] font-semibold mb-6">
-                Strategy & Data Execution
+                Tu Coach Analítica 
               </p>
             </motion.div>
           </div>
@@ -76,18 +76,19 @@ export function SobreMi() {
       
       <div className="space-y-16">
         
-        {/* 1. MAVEN MEL (Izquierda) */}
-        <div className="flex flex-col md:flex-row md:justify-start items-center relative">
-          <div className="hidden md:block absolute left-1/2 -ml-[9px] top-1 w-4 h-4 bg-[#D4537E] rounded-full border-4 border-white z-10"></div>
-          <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} className="w-full md:w-[calc(50%-2rem)] md:text-right">
-            <div className="bg-white p-6 rounded-2xl shadow-md border border-[#7F77DD]/10">
-              <span className="text-[#D4537E] font-bold text-sm">2020 - Presente</span>
-              <h3 className="text-xl font-bold text-[#26215C]">MAVEN MEL</h3>
-              <p className="text-[#7F77DD] font-semibold text-sm mb-3">Strategy & Data Consultant</p>
-              <p className="text-xs text-[#26215C]/70">Liderando la adopción de IA aplicada y estrategias de datos para transformar decisiones de negocio.</p>
-            </div>
-          </motion.div>
-        </div>
+      {/* 1. MAVEN MEL (Izquierda) */}
+<div className="flex flex-col md:flex-row md:justify-start items-center relative">
+  <div className="hidden md:block absolute left-1/2 -ml-[9px] top-1 w-4 h-4 bg-[#D4537E] rounded-full border-4 border-white z-10"></div>
+  <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} className="w-full md:w-[calc(50%-2rem)] md:text-right">
+    <div className="bg-white p-4 rounded-2xl shadow-md border border-[#7F77DD]/10"> {/* Reduje el padding de p-6 a p-4 */}
+      <span className="text-[#D4537E] font-bold text-sm">2020 - Presente</span>
+      <h3 className="text-xl font-bold text-[#26215C]">MAVEN MEL</h3>
+      {/* CAMBIO DE TEXTO AQUÍ ABAJO */}
+      <p className="text-[#7F77DD] font-semibold text-sm mb-2">Decisiones Respaldadas por Datos</p> 
+      <p className="text-xs text-[#26215C]/70">Liderando la adopción de IA aplicada y estrategias de datos para transformar decisiones de negocio.</p>
+    </div>
+  </motion.div>
+</div>
 
         {/* 2. GRUPO EVO / EVOAGRO (Derecha) */}
         <div className="flex flex-col md:flex-row md:justify-end items-center relative">
