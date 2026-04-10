@@ -15,8 +15,21 @@ export function Contacto() {
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // --- LÓGICA ANTISPAM HONEPYOT ---
+    const form = e.target as HTMLFormElement;
+    const honeypot = form.querySelector('input[name="website"]') as HTMLInputElement;
+    
+    // Si el campo invisible tiene algo, es un bot. Cortamos la ejecución aquí.
+    if (honeypot && honeypot.value) {
+      console.log("Bot detectado");
+      return; 
+    }
+    // --------------------------------
+
     console.log("Form submitted:", formData);
     setSubmitted(true);
+    
     setTimeout(() => {
       setSubmitted(false);
       setFormData({ nombre: "", email: "", empresa: "", mensaje: "" });
@@ -207,7 +220,14 @@ export function Contacto() {
                     className="w-full px-4 py-3 rounded-xl border border-[#7F77DD]/20 focus:border-[#7F77DD] focus:outline-none bg-[#EEEDFE]/30"
                   />
                 </div>
-
+{/* Honeypot antispam - campo invisible */}
+<input
+  type="text"
+  name="website"
+  style={{ display: "none" }}
+  tabIndex={-1}
+  autoComplete="off"
+/>
                 <div>
                   <label
                     htmlFor="mensaje"
