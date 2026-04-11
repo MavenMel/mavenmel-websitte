@@ -5,11 +5,35 @@ import { useState } from "react";
 
 export function Home() {
   const [email, setEmail] = useState("");
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Newsletter signup:", email);
-    setEmail("");
+    setIsLoading(true);
+
+    try {
+      // Llamamos a tu función secreta de Netlify
+      const response = await fetch('/.netlify/functions/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        setIsSubscribed(true);
+        setEmail("");
+      } else {
+        alert("Hubo un problema. Por favor, intenta de nuevo.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("No se pudo conectar con el servidor.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const problems = [
@@ -229,28 +253,43 @@ export function Home() {
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
             Insights semanales directo a tu inbox
           </h2>
-          <p className="text-xl text-white/80 mb-8">
-            Tips prácticos para líderes que quieren dominar sus datos
-          </p>
-          <form onSubmit={handleNewsletterSubmit} className="max-w-md mx-auto">
-            <div className="flex gap-3">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="tu@email.com"
-                required
-                className="flex-1 px-6 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:border-[#7F77DD]"
-              />
-              <button
-                type="submit"
-                className="bg-gradient-to-r from-[#7F77DD] to-[#D4537E] text-white px-8 py-4 rounded-xl hover:opacity-90 transition-opacity flex items-center gap-2 font-semibold whitespace-nowrap"
-              >
-                Suscribirse
-                <Mail size={20} />
-              </button>
-            </div>
-          </form>
+
+          {!isSubscribed ? (
+            <>
+              <p className="text-xl text-white/80 mb-8">
+                Tips prácticos para líderes que quieren dominar sus datos
+              </p>
+              <form onSubmit={handleNewsletterSubmit} className="max-w-md mx-auto">
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="tu@email.com"
+                    required
+                    className="flex-1 px-6 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:border-[#7F77DD]"
+                  />
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className="bg-gradient-to-r from-[#7F77DD] to-[#D4537E] text-white px-8 py-4 rounded-xl hover:opacity-90 transition-opacity flex items-center justify-center gap-2 font-semibold whitespace-nowrap disabled:opacity-50"
+                  >
+                    {isLoading ? "Enviando..." : "Suscribirse"}
+                    <Mail size={20} />
+                  </button>
+                </div>
+              </form>
+            </>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="bg-white/10 border border-[#7F77DD]/30 p-10 rounded-3xl max-w-md mx-auto"
+            >
+              <p className="text-2xl font-bold text-white mb-3">¡Bienvenida/o a bordo! 🚀</p>
+              <p className="text-white/80">Ya estás en la lista. Pronto recibirás los mejores tips de datos.</p>
+            </motion.div>
+          )}
         </div>
       </motion.section>
     </div>
