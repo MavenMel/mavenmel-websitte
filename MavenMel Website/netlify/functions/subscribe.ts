@@ -1,5 +1,5 @@
 export default async (req: Request) => {
-  // Solo aceptamos POST
+  // Solo aceptamos peticiones de tipo POST
   if (req.method !== "POST") {
     return new Response("Método no permitido", { status: 405 });
   }
@@ -11,17 +11,17 @@ export default async (req: Request) => {
       return new Response(JSON.stringify({ error: "Email requerido" }), { status: 400 });
     }
 
-    // Aquí llamamos a Brevo
+    // Llamada a la API de Brevo con tu lista ID 7
     const response = await fetch("https://api.brevo.com/v3/contacts", {
       method: "POST",
       headers: {
         "accept": "application/json",
         "content-type": "application/json",
-        "api-key": process.env.BREVO_API_KEY as string, // La clave se saca de Netlify
+        "api-key": process.env.BREVO_API_KEY as string, 
       },
       body: JSON.stringify({
         email: email,
-        listIds: [2], // <--- IMPORTANTE: Cambia el 2 por tu ID de lista real de Brevo
+        listIds: [7], // <--- ¡ID ACTUALIZADO A 7!
         updateEnabled: true
       })
     });
