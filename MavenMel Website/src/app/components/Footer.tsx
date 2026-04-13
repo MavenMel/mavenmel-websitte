@@ -77,7 +77,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-white/10 text-center text-white/50 text-sm">
-          <p>&copy; 2025 MavenMel. Strategy & Data.</p>
+          <p>&copy; 2026 MavenMel. Strategy & Data.</p>
         </div>
       </div>
     </footer>
