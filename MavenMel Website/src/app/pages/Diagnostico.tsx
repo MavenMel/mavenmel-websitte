@@ -222,7 +222,7 @@ export function Diagnostico() {
     setSubmitError("");
 
     try {
-      const res = await fetch("/.netlify/functions/subscribe", {
+      const res = await fetch("/.netlify/functions/diagnostico-lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(leadForm),
