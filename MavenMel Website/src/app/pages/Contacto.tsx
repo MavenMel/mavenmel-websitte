@@ -1,3 +1,4 @@
+
 import { motion } from "motion/react";
 import { useState } from "react";
 import { Mail, MessageCircle, Linkedin, Send, Calendar, MapPin, Phone } from "lucide-react";
@@ -30,19 +31,15 @@ export function Contacto() {
     if (honeypot && honeypot.value) return; 
 
     try {
-      // Reutilizamos tu infraestructura de Netlify
-      // Nota: Puedes crear otra función llamada 'contact.ts' o usar la misma ajustándola
-      const response = await fetch('/.netlify/functions/subscribe', {
+      const response = await fetch('/.netlify/functions/contact', {
         method: 'POST',
-        body: JSON.stringify({ 
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           email: formData.email,
-          attributes: {
-            NOMBRE: formData.nombre,
-            SMS: formData.telefono, // Brevo usa 'SMS' para el teléfono
-            EMPRESA: formData.empresa,
-            MENSAJE: formData.mensaje
-          },
-          listIds: [8] // <--- USA UN ID DIFERENTE (Ej: Lista de Prospectos)
+          nombre: formData.nombre,
+          telefono: formData.telefono,
+          empresa: formData.empresa,
+          mensaje: formData.mensaje,
         }),
       });
 
