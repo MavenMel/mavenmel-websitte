@@ -1,10 +1,19 @@
 import { motion } from "motion/react";
 import { useState } from "react";
-import { CheckCircle2, Circle, ArrowRight, Clock, FileText, Award, MessageSquare } from "lucide-react";
+import { CheckCircle2, Circle, ArrowRight, Clock, FileText, Award, MessageSquare, Loader2 } from "lucide-react";
 import { Link } from "react-router";
 
 export function Diagnostico() {
   const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>({});
+  const [leadSubmitted, setLeadSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [leadForm, setLeadForm] = useState({
+    nombre: "",
+    email: "",
+    telefono: "",
+    empresa: "",
+  });
 
   const questions = [
     {
@@ -207,6 +216,32 @@ export function Diagnostico() {
     }
   };
 
+  const handleLeadSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    try {
+      const res = await fetch("/.netlify/functions/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(leadForm),
+      });
+
+      if (res.ok) {
+        setLeadSubmitted(true);
+        window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+      } else {
+        const data = await res.json();
+        setSubmitError(data.error || "Ocurrió un error. Intenta de nuevo.");
+      }
+    } catch {
+      setSubmitError("No se pudo conectar. Intenta de nuevo.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const benefits = [
     { icon: Clock, text: "100% gratuito" },
     { icon: FileText, text: "Resultados inmediatos" },
@@ -215,7 +250,7 @@ export function Diagnostico() {
   ];
 
   const allAnswered = Object.keys(selectedAnswers).length === questions.length;
-  const result = allAnswered ? getResult() : null;
+  const result = leadSubmitted ? getResult() : null;
 
   return (
     <div>
@@ -321,8 +356,117 @@ export function Diagnostico() {
         </div>
       </section>
 
-      {/* Results */}
-      {allAnswered && result && (
+      {/* Lead Capture — aparece cuando todas las preguntas están respondidas y aún no se registró */}
+      {allAnswered && !leadSubmitted && (
+        <motion.section
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="py-24 bg-gradient-to-br from-[#EEEDFE] to-white"
+        >
+          <div className="max-w-xl mx-auto px-6 lg:px-8 text-center">
+            <div className="mb-8">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#7F77DD] to-[#D4537E] mb-6">
+                <Award className="text-white" size={32} />
+              </div>
+              <h2 className="text-3xl font-bold text-[#26215C] mb-3">
+                ¡Tu diagnóstico está listo!
+              </h2>
+              <p className="text-lg text-[#26215C]/70">
+                Ingresa tus datos para ver tu nivel de madurez analítica y recomendaciones personalizadas.
+              </p>
+            </div>
+
+            <form
+              onSubmit={handleLeadSubmit}
+              className="bg-white rounded-2xl p-8 shadow-lg text-left space-y-5"
+            >
+              <div>
+                <label className="block text-sm font-semibold text-[#26215C] mb-1">
+                  Nombre completo <span className="text-[#D4537E]">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  placeholder="Ej. María González"
+                  value={leadForm.nombre}
+                  onChange={(e) => setLeadForm({ ...leadForm, nombre: e.target.value })}
+                  className="w-full px-4 py-3 rounded-xl border border-[#7F77DD]/30 focus:outline-none focus:ring-2 focus:ring-[#7F77DD]/50 text-[#26215C] placeholder:text-[#26215C]/40"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-[#26215C] mb-1">
+                  Correo electrónico <span className="text-[#D4537E]">*</span>
+                </label>
+                <input
+                  type="email"
+                  required
+                  placeholder="Ej. maria@empresa.com"
+                  value={leadForm.email}
+                  onChange={(e) => setLeadForm({ ...leadForm, email: e.target.value })}
+                  className="w-full px-4 py-3 rounded-xl border border-[#7F77DD]/30 focus:outline-none focus:ring-2 focus:ring-[#7F77DD]/50 text-[#26215C] placeholder:text-[#26215C]/40"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-[#26215C] mb-1">
+                  Teléfono
+                </label>
+                <input
+                  type="tel"
+                  placeholder="Ej. +57 310 000 0000"
+                  value={leadForm.telefono}
+                  onChange={(e) => setLeadForm({ ...leadForm, telefono: e.target.value })}
+                  className="w-full px-4 py-3 rounded-xl border border-[#7F77DD]/30 focus:outline-none focus:ring-2 focus:ring-[#7F77DD]/50 text-[#26215C] placeholder:text-[#26215C]/40"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-[#26215C] mb-1">
+                  Empresa
+                </label>
+                <input
+                  type="text"
+                  placeholder="Ej. Acme Corp"
+                  value={leadForm.empresa}
+                  onChange={(e) => setLeadForm({ ...leadForm, empresa: e.target.value })}
+                  className="w-full px-4 py-3 rounded-xl border border-[#7F77DD]/30 focus:outline-none focus:ring-2 focus:ring-[#7F77DD]/50 text-[#26215C] placeholder:text-[#26215C]/40"
+                />
+              </div>
+
+              {submitError && (
+                <p className="text-sm text-[#D4537E] text-center">{submitError}</p>
+              )}
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#7F77DD] to-[#D4537E] text-white px-8 py-4 rounded-xl font-semibold hover:opacity-90 transition-opacity disabled:opacity-60"
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="animate-spin" size={20} />
+                    Procesando...
+                  </>
+                ) : (
+                  <>
+                    Ver mis resultados
+                    <ArrowRight size={20} />
+                  </>
+                )}
+              </button>
+
+              <p className="text-xs text-center text-[#26215C]/40">
+                Tu información es confidencial. No compartimos tus datos con terceros.
+              </p>
+            </form>
+          </div>
+        </motion.section>
+      )}
+
+      {/* Results — aparece solo después de registrar los datos */}
+      {leadSubmitted && result && (
         <motion.section
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
