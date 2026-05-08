@@ -88,7 +88,7 @@ function Index() {
     <main className="min-h-screen bg-background text-foreground">
       <header className="mx-auto flex w-full max-w-3xl items-center justify-between px-6 pt-8">
         <div className="flex items-center gap-2">
-          <div className="h-2.5 w-2.5 rounded-full bg-primary" />
+          <div className="h-2.5 w-2.5 rounded-full bg-[#7f77dd]" />
           <span className="text-sm font-medium tracking-tight text-ink/80">
             Maven Mel
           </span>
@@ -101,7 +101,7 @@ function Index() {
       <div className="mx-auto mt-6 w-full max-w-3xl px-6">
         <div className="h-[3px] w-full overflow-hidden rounded-full bg-secondary">
           <div
-            className="h-full rounded-full bg-primary transition-all duration-700 ease-out"
+            className="h-full rounded-full bg-[#7f77dd] transition-all duration-700 ease-out"
             style={{ width: `${((step + 1) / totalSteps) * 100}%` }}
           />
         </div>
@@ -134,7 +134,7 @@ function Index() {
       </section>
 
       <footer className="mx-auto w-full max-w-3xl px-6 pb-10">
-        <p className="text-center text-xs text-muted-foreground">
+        <p className="text-center text-xs text-[#6b7280]">
           Una herramienta de Maven Mel · Estimaciones aproximadas con fines ejecutivos
         </p>
       </footer>
@@ -147,16 +147,16 @@ function Index() {
 function StepIntro({ onNext }: { onNext: () => void }) {
   return (
     <div className="animate-rise">
-      <p className="text-sm font-medium uppercase tracking-[0.18em] text-accent">
+      <p className="text-sm font-medium uppercase tracking-[0.18em] text-[#d4537e]">
         Costo Invisible Operativo
       </p>
-      <h1 className="mt-6 text-balance text-4xl font-semibold leading-[1.1] tracking-tight text-ink sm:text-5xl">
+      <h1 className="mt-6 text-balance text-4xl font-semibold leading-[1.1] tracking-tight text-[#26215c] sm:text-5xl">
         Las empresas rara vez pierden dinero por falta de herramientas.
-        <span className="block text-ink/60">
+        <span className="block text-[#26215c]/60">
           Lo pierden por esperar información, corregir errores y tomar decisiones tarde.
         </span>
       </h1>
-      <p className="mt-8 max-w-xl text-lg text-muted-foreground">
+      <p className="mt-8 max-w-xl text-lg text-[#6b7280]">
         En menos de 3 minutos visualiza cómo opera tu organización y cuánto cuesta
         operar así.
       </p>
@@ -165,7 +165,7 @@ function StepIntro({ onNext }: { onNext: () => void }) {
         <PrimaryButton onClick={onNext}>Comenzar</PrimaryButton>
       </div>
 
-      <div className="mt-16 flex items-center gap-3 text-sm text-muted-foreground">
+      <div className="mt-16 flex items-center gap-3 text-sm text-[#6b7280]">
         <span className="h-px w-8 bg-border" />
         Sin registro · sin envío de datos
       </div>
@@ -189,10 +189,10 @@ function StepOperation({
   return (
     <div className="animate-rise space-y-12">
       <div>
-        <p className="text-sm font-medium uppercase tracking-[0.18em] text-accent">
+        <p className="text-sm font-medium uppercase tracking-[0.18em] text-[#d4537e]">
           Cómo opera tu organización
         </p>
-        <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+        <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-[#26215c] sm:text-4xl">
           Tres preguntas rápidas sobre el día a día.
         </h2>
       </div>
