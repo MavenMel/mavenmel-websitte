@@ -227,7 +227,7 @@ function StepOperation({
             step={5}
             value={op.manual}
             onChange={(e) => setOp({ ...op, manual: Number(e.target.value) })}
-            className="brand-slider mt-3"
+            className="brand-slider mt-4 w-full"
           />
         </Field>
       </div>
@@ -589,7 +589,7 @@ function StepFriction({
   const insights: string[] = [];
   if (op.errors >= 2)
     insights.push(
-      "Los retrabajos frecuentes indican procesos que dependen demasiado de revisiones manuales.",
+      "Parte del costo de perfiles estratégicos se está consumiendo en tareas operativas.",
     );
   if (op.decision >= 2)
     insights.push(
@@ -616,12 +616,12 @@ function StepFriction({
     <div className="animate-rise space-y-10">
       <div>
         <p className="text-sm font-medium uppercase tracking-[0.18em] text-[#d4537e]">
-          Fricción detectada
+          Ineficiencia detectada
         </p>
         <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-[#26215c] sm:text-4xl">
-          No es solo cuánto tiempo se pierde.
+          Parte del gasto administrativo no está generando valor proporcional.
           <span className="block text-[#26215c]/60">
-            Es cómo se está perdiendo y quién lo está perdiendo.
+            La operación está absorbiendo tiempo y costo en tareas manuales, coordinación y retrabajos.
           </span>
         </h2>
       </div>
@@ -697,21 +697,31 @@ function StepFriction({
 
 function FrictionMeter({ score }: { score: number }) {
   const level =
-    score < 30 ? "Baja" : score < 55 ? "Moderada" : score < 80 ? "Alta" : "Crítica";
+    const level =
+  score < 30
+    ? "Controlado"
+    : score < 55
+      ? "Creciente"
+      : score < 80
+        ? "Elevado"
+        : "Crítico";
   return (
     <div className="rounded-2xl border border-[#d9d9e8] bg-white p-6 shadow-soft sm:p-7">
       <div className="flex items-baseline justify-between">
         <p className="text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
-          Nivel de fricción operativa
+          Costo administrativo invisible
         </p>
         <p className="text-sm font-semibold text-[#7f77dd]">{level}</p>
       </div>
-      <div className="mt-4 flex items-baseline gap-3">
-        <span className="text-5xl font-semibold tabular-nums tracking-tight text-[#26215c]">
-          {score}
-        </span>
-        <span className="text-sm text-muted-foreground">/ 100</span>
-      </div>
+      <div className="mt-4">
+  <p className="text-5xl font-semibold tracking-tight text-[#26215c]">
+    {level}
+  </p>
+
+  <p className="mt-2 text-sm text-muted-foreground">
+    Índice estimado: {score}/100
+  </p>
+</div>
       <div className="mt-4 h-2 w-full overflow-hidden rounded-full bg-[#EEEDFE]">
         <div
           className="h-full rounded-full bg-gradient-to-r from-[#7f77dd] to-[#d4537e] transition-all duration-700"
@@ -896,12 +906,31 @@ function StepSummary({
   if (g.multipleAreas) issues.push("Dependencia entre múltiples áreas");
   issues.push("Costo invisible no dimensionado");
 
-  const opps = [
-    "Automatización de tareas repetitivas",
-    "Consolidación de fuentes de datos",
-    "Visibilidad ejecutiva en tiempo real",
-    "Liberación de tiempo en perfiles clave",
-  ];
+  const opps: string[] = [];
+
+if (op.manual >= 60)
+  opps.push("Reducir carga manual y tareas repetitivas");
+
+if (op.errors >= 2)
+  opps.push("Disminuir retrabajos y errores operativos");
+
+if (op.decision >= 2)
+  opps.push("Acelerar decisiones con información consolidada");
+
+if (g.hasStrategic)
+  opps.push("Liberar tiempo de perfiles estratégicos");
+
+if (g.multipleAreas)
+  opps.push("Centralizar información entre áreas");
+
+if (g.heavyHours)
+  opps.push("Reducir tiempo invertido en consolidación operativa");
+
+if (op.manual >= 70 && g.hasStrategic)
+  opps.push("Automatizar procesos de alto costo administrativo");
+
+if (opps.length < 4)
+  opps.push("Mejorar visibilidad operativa en tiempo real");
 
   return (
     <div className="animate-rise space-y-12">
@@ -910,15 +939,15 @@ function StepSummary({
           Resumen ejecutivo
         </p>
         <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-[#26215c] sm:text-4xl">
-          Una lectura clara del costo invisible.
+          Una estimación del costo administrativo que hoy no está generando suficiente valor.
         </h2>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-3">
         <MetricCard
-          label="Fricción"
+          label="Costo invisible"
           value={`${g.frictionScore}/100`}
-          unit="nivel operativo"
+          unit="impacto administrativo"
         />
         <MetricCard
           label="Costo mensual"
@@ -935,7 +964,7 @@ function StepSummary({
 
       <div className="grid gap-6 sm:grid-cols-2">
         <ListCard title="Lo que probablemente está ocurriendo" items={issues} tone="ink" />
-        <ListCard title="Oportunidades más claras" items={opps} tone="primary" />
+        <ListCard title="Dónde podría recuperarse más valor operativo" items={opps} tone="primary" />
       </div>
 
       <div className="rounded-3xl bg-[#26215c] p-8 text-white shadow-glow sm:p-12">
