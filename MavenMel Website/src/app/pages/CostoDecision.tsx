@@ -2,6 +2,7 @@
 import { useMemo, useState } from "react";
 export function CostoDecision() {
   return <Index />;
+}
 
 /* ------------------------- TYPES ------------------------- */
 
