@@ -12,6 +12,7 @@ export function Navigation() {
     { path: "/servicios", label: "Servicios" },
     { path: "/sobre-mi", label: "Sobre mí" },
     { path: "/diagnostico", label: "Diagnóstico" },
+    { path: "/costodecision", label: "Calculadora" },
     { path: "/contacto", label: "Contacto" },
     { path: "/redes", label: "Redes" },
   ];
