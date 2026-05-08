@@ -32,12 +32,12 @@ export function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-5 xl:gap-8">
             {links.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`relative py-2 transition-colors ${
+                className={`relative py-2 text-sm xl:text-base transition-colors ${
                   location.pathname === link.path
                     ? "text-primary"
                     : "text-foreground/70 hover:text-foreground"
@@ -58,7 +58,7 @@ export function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2"
+            className="lg:hidden p-2"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -72,7 +72,7 @@ export function Navigation() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t border-border"
+            className="lg:hidden bg-white border-t border-border"
           >
             <div className="px-6 py-4 space-y-4">
               {links.map((link) => (

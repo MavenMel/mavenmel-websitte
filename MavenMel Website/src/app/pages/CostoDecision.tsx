@@ -58,14 +58,25 @@ function Index() {
   const [roles, setRoles] = useState<Role[]>([]);
   const [op, setOp] = useState<Operation>({ errors: 1, decision: 1, manual: 50 });
   const [leadForm, setLeadForm] = useState({ nombre: "", email: "", telefono: "", empresa: "" });
-  const [leadSubmitted, setLeadSubmitted] = useState(false);
+  const [leadSubmitted, setLeadSubmitted] = useState(
+    () => localStorage.getItem("mavenmel_lead_captured") === "true"
+  );
   const [isSubmittingLead, setIsSubmittingLead] = useState(false);
   const [leadError, setLeadError] = useState("");
 
-  const totalSteps = 7;
+  const alreadyCaptured = leadSubmitted;
+  const totalSteps = alreadyCaptured ? 6 : 7;
 
-  const next = () => setStep((s) => Math.min(6, s + 1) as Step);
-  const back = () => setStep((s) => Math.max(0, s - 1) as Step);
+  const next = () => setStep((s) => {
+    const n = Math.min(6, s + 1) as Step;
+    if (n === 4 && alreadyCaptured) return 5 as Step;
+    return n;
+  });
+  const back = () => setStep((s) => {
+    const n = Math.max(0, s - 1) as Step;
+    if (n === 4 && alreadyCaptured) return 3 as Step;
+    return n;
+  });
 
   const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,8 +89,9 @@ function Index() {
         body: JSON.stringify(leadForm),
       });
       if (res.ok) {
+        localStorage.setItem("mavenmel_lead_captured", "true");
         setLeadSubmitted(true);
-        next();
+        setStep(5 as Step);
       } else {
         const data = await res.json();
         setLeadError(data.error || "Ocurrió un error. Intenta de nuevo.");

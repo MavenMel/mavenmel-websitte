@@ -1,14 +1,16 @@
 import { Link } from "react-router";
-import { Linkedin, MessageCircle, ArrowRight } from "lucide-react";
+import { Linkedin, MessageCircle } from "lucide-react";
 import { useState } from "react";
 
 export function Footer() {
   const links = [
-    { path: "/", label: "Home" },
+    { path: "/", label: "Inicio" },
     { path: "/servicios", label: "Servicios" },
     { path: "/sobre-mi", label: "Sobre mí" },
     { path: "/diagnostico", label: "Diagnóstico" },
+    { path: "/costodecision", label: "Calculadora" },
     { path: "/contacto", label: "Contacto" },
+    { path: "/redes", label: "Redes" },
   ];
 
   return (

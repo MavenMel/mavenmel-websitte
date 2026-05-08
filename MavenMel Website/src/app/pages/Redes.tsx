@@ -59,12 +59,16 @@ export function Redes() {
               <p className="text-[#26215C]/70 mb-6">
                 {c.descripcion}
               </p>
-              <a
-                href={c.link}
-                className="inline-flex items-center gap-2 text-[#D4537E] font-bold"
-              >
-                Ver detalles <ExternalLink size={16} />
-              </a>
+              {c.link !== "#" && (
+                <a
+                  href={c.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-[#D4537E] font-bold"
+                >
+                  Ver detalles <ExternalLink size={16} />
+                </a>
+              )}
             </motion.div>
           ))}
         </div>
