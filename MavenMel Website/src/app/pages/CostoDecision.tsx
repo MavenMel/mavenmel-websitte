@@ -697,14 +697,13 @@ function StepFriction({
 
 function FrictionMeter({ score }: { score: number }) {
   const level =
-    const level =
-  score < 30
-    ? "Controlado"
-    : score < 55
-      ? "Creciente"
-      : score < 80
-        ? "Elevado"
-        : "Crítico";
+    score < 30
+      ? "Controlado"
+      : score < 55
+        ? "Creciente"
+        : score < 80
+          ? "Elevado"
+          : "Crítico";
   return (
     <div className="rounded-2xl border border-[#d9d9e8] bg-white p-6 shadow-soft sm:p-7">
       <div className="flex items-baseline justify-between">
