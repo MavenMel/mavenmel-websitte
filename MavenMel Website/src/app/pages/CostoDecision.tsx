@@ -48,7 +48,7 @@ const newRole = (): Role => ({
   hours: 8,
 });
 
-type Step = 0 | 1 | 2 | 3 | 4 | 5;
+type Step = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 
 /* ------------------------- COMPONENT ------------------------- */
 
@@ -57,11 +57,39 @@ function Index() {
   const [roleCount, setRoleCount] = useState<number>(0);
   const [roles, setRoles] = useState<Role[]>([]);
   const [op, setOp] = useState<Operation>({ errors: 1, decision: 1, manual: 50 });
+  const [leadForm, setLeadForm] = useState({ nombre: "", email: "", telefono: "", empresa: "" });
+  const [leadSubmitted, setLeadSubmitted] = useState(false);
+  const [isSubmittingLead, setIsSubmittingLead] = useState(false);
+  const [leadError, setLeadError] = useState("");
 
-  const totalSteps = 6;
+  const totalSteps = 7;
 
-  const next = () => setStep((s) => Math.min(5, s + 1) as Step);
+  const next = () => setStep((s) => Math.min(6, s + 1) as Step);
   const back = () => setStep((s) => Math.max(0, s - 1) as Step);
+
+  const handleLeadSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmittingLead(true);
+    setLeadError("");
+    try {
+      const res = await fetch("/.netlify/functions/calculadora-lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(leadForm),
+      });
+      if (res.ok) {
+        setLeadSubmitted(true);
+        next();
+      } else {
+        const data = await res.json();
+        setLeadError(data.error || "Ocurrió un error. Intenta de nuevo.");
+      }
+    } catch {
+      setLeadError("No se pudo conectar. Intenta de nuevo.");
+    } finally {
+      setIsSubmittingLead(false);
+    }
+  };
 
   const setCount = (n: number) => {
     setRoleCount(n);
@@ -80,6 +108,9 @@ function Index() {
     setRoles([]);
     setRoleCount(0);
     setOp({ errors: 1, decision: 1, manual: 50 });
+    setLeadForm({ nombre: "", email: "", telefono: "", empresa: "" });
+    setLeadSubmitted(false);
+    setLeadError("");
     setStep(0);
   };
 
@@ -125,9 +156,19 @@ function Index() {
           <StepFriction roles={roles} op={op} onNext={next} onBack={back} />
         )}
         {step === 4 && (
-          <StepOpportunity roles={roles} op={op} onNext={next} onBack={back} />
+          <StepLeadCapture
+            leadForm={leadForm}
+            setLeadForm={setLeadForm}
+            onSubmit={handleLeadSubmit}
+            onBack={back}
+            isSubmitting={isSubmittingLead}
+            error={leadError}
+          />
         )}
         {step === 5 && (
+          <StepOpportunity roles={roles} op={op} onNext={next} onBack={back} />
+        )}
+        {step === 6 && (
           <StepSummary roles={roles} op={op} onBack={back} onRestart={restart} />
         )}
       </section>
@@ -570,6 +611,114 @@ const formatCOP = (n: number) =>
 
 const formatNum = (n: number) =>
   new Intl.NumberFormat("es-CO", { maximumFractionDigits: 0 }).format(Math.round(n));
+
+/* ------------------------- STEP LEAD CAPTURE ------------------------- */
+
+function StepLeadCapture({
+  leadForm,
+  setLeadForm,
+  onSubmit,
+  onBack,
+  isSubmitting,
+  error,
+}: {
+  leadForm: { nombre: string; email: string; telefono: string; empresa: string };
+  setLeadForm: (f: { nombre: string; email: string; telefono: string; empresa: string }) => void;
+  onSubmit: (e: React.FormEvent) => void;
+  onBack: () => void;
+  isSubmitting: boolean;
+  error: string;
+}) {
+  return (
+    <div className="animate-rise space-y-10">
+      <div>
+        <p className="text-sm font-medium uppercase tracking-[0.18em] text-[#d4537e]">
+          Ya tienes tu diagnóstico
+        </p>
+        <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-[#26215c] sm:text-4xl">
+          ¿A quién le enviamos los resultados?
+          <span className="block text-[#26215c]/60">
+            Ingresa tus datos para ver la oportunidad de mejora y el resumen ejecutivo.
+          </span>
+        </h2>
+      </div>
+
+      <form onSubmit={onSubmit} className="space-y-5">
+        <div className="grid gap-5 sm:grid-cols-2">
+          <div>
+            <label className="text-sm font-medium text-[#26215c]">
+              Nombre completo <span className="text-[#d4537e]">*</span>
+            </label>
+            <input
+              type="text"
+              required
+              placeholder="Ej. María González"
+              value={leadForm.nombre}
+              onChange={(e) => setLeadForm({ ...leadForm, nombre: e.target.value })}
+              className="mt-2 w-full rounded-xl border border-[#d9d9e8] bg-background px-4 py-3 text-sm text-[#26215c] outline-none transition-colors focus:border-[#7f77dd]"
+            />
+          </div>
+          <div>
+            <label className="text-sm font-medium text-[#26215c]">
+              Correo electrónico <span className="text-[#d4537e]">*</span>
+            </label>
+            <input
+              type="email"
+              required
+              placeholder="Ej. maria@empresa.com"
+              value={leadForm.email}
+              onChange={(e) => setLeadForm({ ...leadForm, email: e.target.value })}
+              className="mt-2 w-full rounded-xl border border-[#d9d9e8] bg-background px-4 py-3 text-sm text-[#26215c] outline-none transition-colors focus:border-[#7f77dd]"
+            />
+          </div>
+        </div>
+
+        <div className="grid gap-5 sm:grid-cols-2">
+          <div>
+            <label className="text-sm font-medium text-[#26215c]">Teléfono</label>
+            <input
+              type="tel"
+              placeholder="Ej. +57 310 000 0000"
+              value={leadForm.telefono}
+              onChange={(e) => setLeadForm({ ...leadForm, telefono: e.target.value })}
+              className="mt-2 w-full rounded-xl border border-[#d9d9e8] bg-background px-4 py-3 text-sm text-[#26215c] outline-none transition-colors focus:border-[#7f77dd]"
+            />
+          </div>
+          <div>
+            <label className="text-sm font-medium text-[#26215c]">Empresa</label>
+            <input
+              type="text"
+              placeholder="Ej. Acme Corp"
+              value={leadForm.empresa}
+              onChange={(e) => setLeadForm({ ...leadForm, empresa: e.target.value })}
+              className="mt-2 w-full rounded-xl border border-[#d9d9e8] bg-background px-4 py-3 text-sm text-[#26215c] outline-none transition-colors focus:border-[#7f77dd]"
+            />
+          </div>
+        </div>
+
+        {error && (
+          <p className="text-sm text-[#d4537e]">{error}</p>
+        )}
+
+        <p className="text-xs text-[#6b7280]">
+          Tu información es confidencial. No compartimos tus datos con terceros.
+        </p>
+
+        <div className="flex items-center justify-between pt-2">
+          <SecondaryButton onClick={onBack}>Atrás</SecondaryButton>
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-[#26215c] px-7 py-4 text-base font-medium text-white shadow-soft transition-all hover:translate-y-[-1px] hover:shadow-[0_18px_40px_-12px_rgba(38,33,92,0.45)] disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            {isSubmitting ? "Enviando..." : "Ver mis resultados"}
+            <span aria-hidden>→</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+}
 
 /* ------------------------- STEP FRICTION ------------------------- */
 
