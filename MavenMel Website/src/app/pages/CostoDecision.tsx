@@ -1124,10 +1124,12 @@ if (opps.length < 4)
         </h3>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
           <a
-            href="mailto:info@mavenmel.com?subject=Diagn%C3%B3stico%20estrat%C3%A9gico%20—%20Costo%20Invisible%20Operativo"
+            href="https://wa.me/573004824207?text=Hola%2C%20acabo%20de%20usar%20la%20calculadora%20de%20ineficiencia%20de%20Maven%20Mel%20y%20me%20gustar%C3%ADa%20saber%20c%C3%B3mo%20reducir%20ese%20costo%20en%20mi%20operaci%C3%B3n."
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-white shadow-soft transition-transform hover:translate-y-[-1px] hover:shadow-[0_18px_40px_-12px_rgba(212,83,126,0.55)]"
           >
-            Solicitar diagnóstico estratégico
+            Hablar con Melisa por WhatsApp
           </a>
           <button
             onClick={onRestart}
