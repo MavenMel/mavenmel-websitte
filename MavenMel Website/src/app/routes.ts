@@ -6,6 +6,8 @@ import { SobreMi } from "./pages/SobreMi";
 import { Diagnostico } from "./pages/Diagnostico";
 import { Contacto } from "./pages/Contacto";
 import { Redes } from "./pages/Redes";
+import { CostoDecision } from "./pages/CostoDecision";
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -17,6 +19,7 @@ export const router = createBrowserRouter([
       { path: "diagnostico", Component: Diagnostico },
       { path: "contacto", Component: Contacto },
       { path: "redes", Component: Redes },
+      { path: "costodecision", Component: CostoDecision },
     ],
   },
 ]);
