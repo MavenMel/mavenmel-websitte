@@ -20,7 +20,7 @@ export function Footer() {
             <Link to="/" className="flex items-center gap-3 mb-4">
   <div className="flex items-center gap-2">
     {/* El cuadrito de color */}
-    <div className="w-10 h-10 w-10 h-10 rounded-lg bg-gradient-to-br from-[#7F77DD] to-[#D4537E] flex items-center justify-center text-white font-bold text-sm">MW</div>
+    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#7F77DD] to-[#D4537E] flex items-center justify-center text-white font-bold text-sm">MW</div>
     <div className="flex flex-col">
       <span className="font-bold text-xl text-white leading-tight tracking-wide">
         MAVEN MEL

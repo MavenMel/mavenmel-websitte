@@ -1,7 +1,7 @@
 
 import { motion } from "motion/react";
 import { useState } from "react";
-import { Mail, MessageCircle, Linkedin, Send, Calendar, MapPin, Phone } from "lucide-react";
+import { Mail, MessageCircle, Send, Calendar } from "lucide-react";
 
 export function Contacto() {
   const [formData, setFormData] = useState({
@@ -28,7 +28,10 @@ export function Contacto() {
     // --- LÓGICA ANTISPAM HONEPYOT ---
     const form = e.target as HTMLFormElement;
     const honeypot = form.querySelector('input[name="website"]') as HTMLInputElement;
-    if (honeypot && honeypot.value) return; 
+    if (honeypot && honeypot.value) {
+      setIsLoading(false);
+      return;
+    }
 
     try {
       const response = await fetch('/.netlify/functions/contact', {
