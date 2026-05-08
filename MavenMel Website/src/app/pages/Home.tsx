@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import { motion } from "motion/react";
-import { ArrowRight, TrendingUp, Users, GraduationCap, FileSpreadsheet, BarChart3, DollarSign, Mail } from "lucide-react";
+import { ArrowRight, TrendingUp, GraduationCap, DollarSign, Mail, Search, Wrench, AlertTriangle, Clock } from "lucide-react";
 import { useState } from "react";
 
 export function Home() {
@@ -38,39 +38,46 @@ export function Home() {
 
   const problems = [
     {
-      icon: FileSpreadsheet,
-      text: "Tienes Power BI pero sigues exportando a Excel",
+      icon: AlertTriangle,
+      text: "Estás tomando decisiones de millones con información incompleta, tardía o poco confiable.",
     },
     {
-      icon: BarChart3,
-      text: "Tus dashboards existen pero nadie los usa",
+      icon: Clock,
+      text: "Tu equipo trabaja sobre supuestos mientras el margen se erosiona.",
     },
     {
       icon: DollarSign,
-      text: "Invertiste en tecnología pero no ves el ROI",
+      text: "La tecnología está, pero las decisiones críticas siguen llegando tarde o sin respaldo.",
     },
   ];
 
   const services = [
     {
-      icon: TrendingUp,
-      title: "Coach Analítica",
-      description: "Metodología de preguntas poderosas para que saques el máximo de tus datos",
-      subtitle: "Sesiones 1:1 para líderes",
+      icon: Search,
+      title: "Diagnóstico",
+      description: "Identifica qué decisiones críticas carecen de información confiable y están afectando directamente tus resultados.",
+      subtitle: "Claridad en 5 semanas",
       link: "/servicios",
     },
     {
-      icon: Users,
-      title: "Fractional CIO/CDO",
-      description: "Dirección estratégica de tecnología y datos sin el costo de un ejecutivo full-time",
-      subtitle: "Liderazgo tech part-time",
+      icon: TrendingUp,
+      title: "Coaching Analítico",
+      description: "Acompañamiento estratégico para que cada decisión importante esté respaldada por evidencia y mueva el margen.",
+      subtitle: "Acompañamiento 1:1",
+      link: "/servicios",
+    },
+    {
+      icon: Wrench,
+      title: "Atelier",
+      description: "Construcción a medida de las piezas que tus decisiones necesitan para ser efectivas, sostenibles y escalables.",
+      subtitle: "Construcción a medida",
       link: "/servicios",
     },
     {
       icon: GraduationCap,
-      title: "Educación",
-      description: "Capacitación para equipos que quieren hablar el idioma de los datos",
-      subtitle: "Cursos, workshops, charlas",
+      title: "Academy",
+      description: "Desarrolla en tu equipo la capacidad de tomar mejores decisiones, más rápido, con impacto directo en la operación.",
+      subtitle: "Formación de equipos",
       link: "/servicios",
     },
   ];
@@ -96,9 +103,9 @@ export function Home() {
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
                 <h1 className="text-5xl lg:text-7xl font-bold text-[#26215C] leading-tight">
-                  Tus datos ya hablan.
+                  Las decisiones de hoy
                   <br />
-                  <span className="text-[#7F77DD]">Aprende a escucharlos.</span>
+                  <span className="text-[#7F77DD]">definen tu P&L de mañana.</span>
                 </h1>
               </motion.div>
 
@@ -108,7 +115,7 @@ export function Home() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-xl text-[#26215C]/70 max-w-lg leading-relaxed"
               >
-                Coaching analítico 1:1 para líderes que quieren convertir su tecnología en resultados de negocio
+                Trabajo con líderes para que sus decisiones críticas estén respaldadas por información confiable, reduzcan el riesgo operativo y aceleren el crecimiento.
               </motion.p>
 
               <motion.div
@@ -196,7 +203,7 @@ export function Home() {
             className="text-center max-w-3xl mx-auto"
           >
             <p className="text-xl text-[#26215C]/80 leading-relaxed">
-              No es que los datos sean difíciles. Es que nadie te enseñó a hacerles las preguntas correctas.
+              El problema no es la tecnología. Es que nadie conectó la información con las decisiones que realmente mueven el estado de resultados.
             </p>
           </motion.div>
         </div>
@@ -251,13 +258,13 @@ export function Home() {
       >
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
-            Insights semanales directo a tu inbox
+            Decisiones que mueven resultados, cada semana en tu inbox
           </h2>
 
           {!isSubscribed ? (
             <>
               <p className="text-xl text-white/80 mb-8">
-                Tips prácticos para líderes que quieren dominar sus datos
+                Perspectivas prácticas para líderes que quieren que su información impacte el estado de resultados.
               </p>
               <form onSubmit={handleNewsletterSubmit} className="max-w-md mx-auto">
                 <div className="flex flex-col sm:flex-row gap-3">

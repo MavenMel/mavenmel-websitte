@@ -158,29 +158,16 @@ export function SobreMi() {
             className="space-y-6 text-lg text-[#26215C]/80 leading-relaxed"
           >
             <p>
-              Llevo más de 14 años ayudando a empresas a adoptar
-              tecnología y convertir datos en decisiones. He
-              trabajado en consultoría comercial, roles de
-              datos, y proyectos de transformación digital en
-              empresas como Simplexity, Manar/Datecsa, Celes, Evoagro.
+              Llevo más de 14 años trabajando en la intersección entre la estrategia de negocio y la información. He acompañado a empresas en consultoría comercial, liderazgo de datos y transformación digital en sectores como logística, agroindustria, retail y tecnología.
             </p>
             <p>
-              Lo que más me apasiona no es la tecnología en sí,
-              sino lo que pasa cuando un líder finalmente
-              entiende qué le están diciendo sus números. Ese
-              momento de claridad donde todo hace clic.
+              Lo que más me mueve no es la tecnología en sí, sino el momento en que un líder toma una decisión difícil con claridad y confianza porque tiene la información correcta. Ese momento vale millones — literalmente.
             </p>
             <p>
-              Creé MavenMel porque vi demasiados ejecutivos
-              frustrados: tienen herramientas,
-              tienen dashboards... pero siguen bajando todo a excel y tomando
-              decisiones con el estómago porque nadie les enseñó
-              a hacer las preguntas correctas.
+              Creé MavenMel porque vi demasiados ejecutivos atrapados en el mismo patrón: invierten en tecnología, tienen reportes, tienen dashboards... pero siguen tomando decisiones críticas con intuición y retraso, porque nadie conectó la información con lo que realmente mueve el estado de resultados.
             </p>
             <p>
-              Mi enfoque es diferente. No te enseño a ser data
-              scientist. Te enseño a ser un líder que sabe usar
-              los datos que ya tiene.
+              Mi trabajo no es enseñarte análisis de datos. Es ayudarte a que cada decisión importante de tu organización esté respaldada por información confiable, llegue a tiempo y genere el impacto que el negocio necesita.
             </p>
           </motion.div>
         </div>
@@ -233,8 +220,7 @@ export function SobreMi() {
               Mi filosofía
             </h2>
             <p className="text-2xl text-[#7F77DD] font-semibold italic max-w-2xl mx-auto">
-              "Las preguntas correctas importan más que las
-              respuestas perfectas."
+              "Una decisión bien informada, tomada a tiempo, vale más que cualquier dashboard perfectamente construido."
             </p>
           </motion.div>
         </div>
