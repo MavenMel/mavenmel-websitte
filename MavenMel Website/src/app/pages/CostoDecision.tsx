@@ -10,7 +10,6 @@ const ROLE_OPTIONS = [
   "Analista",
   "Analista Senior",
   "Coordinador",
-  "Líder",
   "Director",
   "Gerente",
   "Operativo",
@@ -35,14 +34,14 @@ type Operation = {
   manual: number; // 0-100
 };
 
-const STRATEGIC_ROLES: RoleName[] = ["Líder", "Director", "Gerente"];
+const STRATEGIC_ROLES: RoleName[] = ["Coordinador", "Director", "Gerente"];
 const OPERATIVE_ROLES: RoleName[] = ["Operativo", "Administrativo", "Analista"];
 
 const ERROR_LABELS = ["Casi nunca", "A veces", "Frecuente", "Constante"];
 const DECISION_LABELS = ["Inmediata", "Algunos días", "1–2 semanas", "Mucho tiempo"];
 
 const newRole = (): Role => ({
-  id: Math.random().toString(36).slice(2, 9),
+  id: crypto.randomUUID(),
   role: "Analista",
   customRole: "",
   salary: 3500000,
@@ -89,7 +88,7 @@ function Index() {
       <header className="mx-auto flex w-full max-w-3xl items-center justify-between px-6 pt-8">
         <div className="flex items-center gap-2">
           <div className="h-2.5 w-2.5 rounded-full bg-[#7f77dd]" />
-          <span className="text-sm font-medium tracking-tight text-ink/80">
+          <span className="text-sm font-medium tracking-tight text-[#26215c]/80">
             Maven Mel
           </span>
         </div>
@@ -99,7 +98,7 @@ function Index() {
       </header>
 
       <div className="mx-auto mt-6 w-full max-w-3xl px-6">
-        <div className="h-[3px] w-full overflow-hidden rounded-full bg-secondary">
+        <div className="h-[3px] w-full overflow-hidden rounded-full bg-[#EEEDFE]">
           <div
             className="h-full rounded-full bg-[#7f77dd] transition-all duration-700 ease-out"
             style={{ width: `${((step + 1) / totalSteps) * 100}%` }}
@@ -148,7 +147,7 @@ function StepIntro({ onNext }: { onNext: () => void }) {
   return (
     <div className="animate-rise">
       <p className="text-sm font-medium uppercase tracking-[0.18em] text-[#d4537e]">
-        Costo Invisible Operativo
+        Costo de Esperar Información
       </p>
       <h1 className="mt-6 text-balance text-4xl font-semibold leading-[1.1] tracking-tight text-[#26215c] sm:text-5xl">
         Las empresas rara vez pierden dinero por falta de herramientas.
@@ -157,8 +156,7 @@ function StepIntro({ onNext }: { onNext: () => void }) {
         </span>
       </h1>
       <p className="mt-8 max-w-xl text-lg text-[#6b7280]">
-        En menos de 3 minutos visualiza cómo opera tu organización y cuánto cuesta
-        operar así.
+        En menos de 3 minutos identifica cuánto tiempo, capacidad y dinero se pierden esperando información.
       </p>
 
       <div className="mt-12">
@@ -217,7 +215,7 @@ function StepOperation({
         <Field label="¿Qué porcentaje del trabajo es manual o repetitivo?">
           <div className="flex items-baseline justify-between">
             <span className="text-xs text-muted-foreground">0%</span>
-            <span className="text-2xl font-semibold tabular-nums text-primary">
+            <span className="text-2xl font-semibold tabular-nums text-[#7f77dd]">
               {op.manual}%
             </span>
             <span className="text-xs text-muted-foreground">100%</span>
@@ -247,8 +245,8 @@ function Field({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-2xl border border-border bg-card p-6 shadow-soft sm:p-7">
-      <p className="text-base font-medium text-ink">{label}</p>
+    <div className="rounded-2xl border border-[#d9d9e8] bg-white p-6 shadow-soft sm:p-7">
+      <p className="text-base font-medium text-[#26215c]">{label}</p>
       <div className="mt-5">{children}</div>
     </div>
   );
@@ -274,8 +272,8 @@ function Choices({
             className={[
               "rounded-xl border px-3 py-3 text-sm font-medium transition-all",
               active
-                ? "border-primary bg-primary text-primary-foreground shadow-soft"
-                : "border-border bg-background text-ink hover:border-primary/40 hover:bg-secondary",
+                ? "border-primary bg-[#7f77dd] text-white shadow-soft"
+                : "border-[#d9d9e8] bg-background text-[#26215c] hover:border-primary/40 hover:bg-[#EEEDFE]",
             ].join(" ")}
           >
             {label}
@@ -316,10 +314,10 @@ function StepRoles({
   return (
     <div className="animate-rise space-y-12">
       <div>
-        <p className="text-sm font-medium uppercase tracking-[0.18em] text-accent">
+        <p className="text-sm font-medium uppercase tracking-[0.18em] text-[#d4537e]">
           Tu equipo
         </p>
-        <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+        <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-[#26215c] sm:text-4xl">
           ¿Cuántos tipos de roles participan normalmente en este proceso?
         </h2>
         <p className="mt-3 text-sm text-muted-foreground">
@@ -337,8 +335,8 @@ function StepRoles({
               className={[
                 "rounded-2xl border py-6 text-2xl font-semibold transition-all",
                 active
-                  ? "border-primary bg-primary text-primary-foreground shadow-soft"
-                  : "border-border bg-card text-ink hover:border-primary/40 hover:bg-secondary",
+                  ? "border-primary bg-[#7f77dd] text-white shadow-soft"
+                  : "border-[#d9d9e8] bg-white text-[#26215c] hover:border-primary/40 hover:bg-[#EEEDFE]",
               ].join(" ")}
             >
               {n === 5 ? "5+" : n}
@@ -365,7 +363,7 @@ function StepRoles({
         <button
           onClick={onNext}
           disabled={!canContinue}
-          className="inline-flex items-center justify-center gap-2 rounded-full bg-ink px-7 py-4 text-base font-medium text-white shadow-soft transition-all hover:translate-y-[-1px] hover:shadow-[0_18px_40px_-12px_rgba(38,33,92,0.45)] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:translate-y-0"
+          className="inline-flex items-center justify-center gap-2 rounded-full bg-[#26215c] px-7 py-4 text-base font-medium text-white shadow-soft transition-all hover:translate-y-[-1px] hover:shadow-[0_18px_40px_-12px_rgba(38,33,92,0.45)] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:translate-y-0"
         >
           Ver hallazgos
           <span aria-hidden>→</span>
@@ -387,23 +385,23 @@ function RoleCard({
   const m = roleMetrics(role);
 
   return (
-    <div className="animate-rise rounded-2xl border border-border bg-card p-6 shadow-soft sm:p-7">
+    <div className="animate-rise rounded-2xl border border-[#d9d9e8] bg-white p-6 shadow-soft sm:p-7">
       <div className="flex items-center justify-between">
         <p className="text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
           Rol {index + 1}
         </p>
-        <span className="text-xs font-medium text-primary">
+        <span className="text-xs font-medium text-[#7f77dd]">
           {role.role === "Otro" ? role.customRole || "Personalizado" : role.role}
         </span>
       </div>
 
       <div className="mt-5 grid gap-5 sm:grid-cols-2">
         <div>
-          <label className="text-sm font-medium text-ink">Tipo de rol</label>
+          <label className="text-sm font-medium text-[#26215c]">Tipo de rol</label>
           <select
             value={role.role}
             onChange={(e) => onChange({ role: e.target.value as RoleName })}
-            className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-ink outline-none transition-colors focus:border-primary"
+            className="mt-2 w-full rounded-xl border border-[#d9d9e8] bg-background px-4 py-3 text-sm text-[#26215c] outline-none transition-colors focus:border-primary"
           >
             {ROLE_OPTIONS.map((o) => (
               <option key={o} value={o}>
@@ -417,13 +415,13 @@ function RoleCard({
               placeholder="Nombre del rol"
               value={role.customRole}
               onChange={(e) => onChange({ customRole: e.target.value })}
-              className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-ink outline-none transition-colors focus:border-primary"
+              className="mt-2 w-full rounded-xl border border-[#d9d9e8] bg-background px-4 py-3 text-sm text-[#26215c] outline-none transition-colors focus:border-primary"
             />
           )}
         </div>
 
         <div>
-          <label className="text-sm font-medium text-ink">Salario mensual (COP)</label>
+          <label className="text-sm font-medium text-[#26215c]">Salario mensual (COP)</label>
           <input
             type="number"
             min={0}
@@ -431,7 +429,7 @@ function RoleCard({
             placeholder="Ejemplo: 3500000"
             value={role.salary || ""}
             onChange={(e) => onChange({ salary: Number(e.target.value) })}
-            className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm tabular-nums text-ink outline-none transition-colors focus:border-primary"
+            className="mt-2 w-full rounded-xl border border-[#d9d9e8] bg-background px-4 py-3 text-sm tabular-nums text-[#26215c] outline-none transition-colors focus:border-primary"
           />
           <p className="mt-1.5 text-xs text-muted-foreground">
             No necesitas un valor exacto. Una aproximación es suficiente.
@@ -441,10 +439,10 @@ function RoleCard({
 
       <div className="mt-6">
         <div className="flex items-baseline justify-between">
-          <label className="text-sm font-medium text-ink">
+          <label className="text-sm font-medium text-[#26215c]">
             Horas semanales en consolidar, revisar o preparar información
           </label>
-          <span className="text-base font-semibold tabular-nums text-primary">
+          <span className="text-base font-semibold tabular-nums text-[#7f77dd]">
             {role.hours} h
           </span>
         </div>
@@ -489,8 +487,8 @@ function Mini({
       className={[
         "rounded-xl border p-3",
         accent
-          ? "border-transparent bg-secondary text-ink"
-          : "border-border bg-background text-ink",
+          ? "border-transparent bg-[#EEEDFE] text-[#26215c]"
+          : "border-[#d9d9e8] bg-background text-[#26215c]",
       ].join(" ")}
     >
       <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
@@ -522,11 +520,12 @@ function useGlobal(roles: Role[], op: Operation) {
     const baseMonthlyCost = per.reduce((s, x) => s + x.m.monthlyAssoc, 0);
 
     // Friction multipliers from operation answers
-    const errorMult = 1 + op.errors * 0.15; // 1.0 → 1.45
-    const manualMult = 1 + op.manual / 200; // 1.0 → 1.5
-    const decisionMult = 1 + op.decision * 0.1; // 1.0 → 1.3
-    const totalMult = errorMult * manualMult * decisionMult;
+    const frictionImpact =
+  op.errors * 0.12 +
+  op.decision * 0.08 +
+  op.manual / 250;
 
+const totalMult = 1 + frictionImpact;
     const monthlyHours = baseMonthlyHours * totalMult;
     const monthlyCost = baseMonthlyCost * totalMult;
     const yearlyCost = monthlyCost * 12;
@@ -616,12 +615,12 @@ function StepFriction({
   return (
     <div className="animate-rise space-y-10">
       <div>
-        <p className="text-sm font-medium uppercase tracking-[0.18em] text-accent">
+        <p className="text-sm font-medium uppercase tracking-[0.18em] text-[#d4537e]">
           Fricción detectada
         </p>
-        <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+        <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-[#26215c] sm:text-4xl">
           No es solo cuánto tiempo se pierde.
-          <span className="block text-ink/60">
+          <span className="block text-[#26215c]/60">
             Es cómo se está perdiendo y quién lo está perdiendo.
           </span>
         </h2>
@@ -633,7 +632,7 @@ function StepFriction({
         {insights.map((t) => (
           <div
             key={t}
-            className="rounded-2xl border border-border bg-secondary/60 p-5 text-base text-ink"
+            className="rounded-2xl border border-[#d9d9e8] bg-[#EEEDFE]/60 p-5 text-base text-[#26215c]"
           >
             {t}
           </div>
@@ -659,7 +658,7 @@ function StepFriction({
         />
       </div>
 
-      <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+      <div className="rounded-2xl border border-[#d9d9e8] bg-white p-6 shadow-soft">
         <p className="text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
           Distribución por rol
         </p>
@@ -672,16 +671,16 @@ function StepFriction({
             return (
               <li key={r.id}>
                 <div className="flex items-baseline justify-between text-sm">
-                  <span className="font-medium text-ink">
+                  <span className="font-medium text-[#26215c]">
                     {r.role === "Otro" ? r.customRole || "Personalizado" : r.role}
                   </span>
                   <span className="tabular-nums text-muted-foreground">
                     {formatCOP(adjusted)} · {pct}%
                   </span>
                 </div>
-                <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-secondary">
+                <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-[#EEEDFE]">
                   <div
-                    className="h-full rounded-full bg-gradient-to-r from-primary to-accent transition-all duration-700"
+                    className="h-full rounded-full bg-gradient-to-r from-[#7f77dd] to-[#d4537e] transition-all duration-700"
                     style={{ width: `${pct}%` }}
                   />
                 </div>
@@ -700,22 +699,22 @@ function FrictionMeter({ score }: { score: number }) {
   const level =
     score < 30 ? "Baja" : score < 55 ? "Moderada" : score < 80 ? "Alta" : "Crítica";
   return (
-    <div className="rounded-2xl border border-border bg-card p-6 shadow-soft sm:p-7">
+    <div className="rounded-2xl border border-[#d9d9e8] bg-white p-6 shadow-soft sm:p-7">
       <div className="flex items-baseline justify-between">
         <p className="text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
           Nivel de fricción operativa
         </p>
-        <p className="text-sm font-semibold text-primary">{level}</p>
+        <p className="text-sm font-semibold text-[#7f77dd]">{level}</p>
       </div>
       <div className="mt-4 flex items-baseline gap-3">
-        <span className="text-5xl font-semibold tabular-nums tracking-tight text-ink">
+        <span className="text-5xl font-semibold tabular-nums tracking-tight text-[#26215c]">
           {score}
         </span>
         <span className="text-sm text-muted-foreground">/ 100</span>
       </div>
-      <div className="mt-4 h-2 w-full overflow-hidden rounded-full bg-secondary">
+      <div className="mt-4 h-2 w-full overflow-hidden rounded-full bg-[#EEEDFE]">
         <div
-          className="h-full rounded-full bg-gradient-to-r from-primary to-accent transition-all duration-700"
+          className="h-full rounded-full bg-gradient-to-r from-[#7f77dd] to-[#d4537e] transition-all duration-700"
           style={{ width: `${score}%` }}
         />
       </div>
@@ -739,8 +738,8 @@ function MetricCard({
       className={[
         "rounded-2xl border p-6 shadow-soft",
         accent
-          ? "border-transparent bg-ink text-white"
-          : "border-border bg-card text-ink",
+          ? "border-transparent bg-[#26215c] text-white"
+          : "border-[#d9d9e8] bg-white text-[#26215c]",
       ].join(" ")}
     >
       <p
@@ -788,10 +787,10 @@ function StepOpportunity({
   return (
     <div className="animate-rise space-y-10">
       <div>
-        <p className="text-sm font-medium uppercase tracking-[0.18em] text-accent">
+        <p className="text-sm font-medium uppercase tracking-[0.18em] text-[#d4537e]">
           La oportunidad
         </p>
-        <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+        <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-[#26215c] sm:text-4xl">
           Reducir solo un 20% de fricción podría representar:
         </h2>
       </div>
@@ -820,7 +819,7 @@ function StepOpportunity({
         />
       </div>
 
-      <p className="text-sm leading-relaxed text-muted-foreground">
+      <p className="text-sm leading-relaxed text-[#6b7280]">
         Estas cifras son aproximaciones diseñadas para abrir una conversación, no para
         sustituir un análisis profundo. La magnitud real suele ser mayor cuando se
         consideran efectos en clientes, reputación y velocidad de mercado.
@@ -847,14 +846,14 @@ function OpportunityCard({
       className={[
         "rounded-2xl border p-6 shadow-soft",
         highlight
-          ? "border-transparent bg-gradient-to-br from-primary to-[#9a90eb] text-white"
-          : "border-border bg-card text-ink",
+          ? "border-transparent bg-gradient-to-br from-[#7f77dd] to-[#9a90eb] text-white"
+          : "border-[#d9d9e8] bg-white text-[#26215c]",
       ].join(" ")}
     >
       <p
         className={[
           "text-xs font-medium uppercase tracking-[0.14em]",
-          highlight ? "text-white/70" : "text-muted-foreground",
+          highlight ? "text-white/70" : "text-[#6b7280]",
         ].join(" ")}
       >
         {title}
@@ -865,7 +864,7 @@ function OpportunityCard({
       <p
         className={[
           "mt-1 text-sm",
-          highlight ? "text-white/80" : "text-muted-foreground",
+          highlight ? "text-white/80" : "text-[#6b7280]",
         ].join(" ")}
       >
         {detail}
@@ -907,10 +906,10 @@ function StepSummary({
   return (
     <div className="animate-rise space-y-12">
       <div>
-        <p className="text-sm font-medium uppercase tracking-[0.18em] text-accent">
+        <p className="text-sm font-medium uppercase tracking-[0.18em] text-[#d4537e]">
           Resumen ejecutivo
         </p>
-        <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+        <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-[#26215c] sm:text-4xl">
           Una lectura clara del costo invisible.
         </h2>
       </div>
@@ -939,7 +938,7 @@ function StepSummary({
         <ListCard title="Oportunidades más claras" items={opps} tone="primary" />
       </div>
 
-      <div className="rounded-3xl bg-ink p-8 text-white shadow-glow sm:p-12">
+      <div className="rounded-3xl bg-[#26215c] p-8 text-white shadow-glow sm:p-12">
         <p className="text-sm font-medium uppercase tracking-[0.18em] text-white/60">
           Siguiente paso
         </p>
@@ -949,7 +948,7 @@ function StepSummary({
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
           <a
             href="mailto:info@mavenmel.com?subject=Diagn%C3%B3stico%20estrat%C3%A9gico%20—%20Costo%20Invisible%20Operativo"
-            className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-accent-foreground shadow-soft transition-transform hover:translate-y-[-1px] hover:shadow-[0_18px_40px_-12px_rgba(212,83,126,0.55)]"
+            className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-white shadow-soft transition-transform hover:translate-y-[-1px] hover:shadow-[0_18px_40px_-12px_rgba(212,83,126,0.55)]"
           >
             Solicitar diagnóstico estratégico
           </a>
@@ -979,17 +978,17 @@ function ListCard({
   tone: "ink" | "primary";
 }) {
   return (
-    <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+    <div className="rounded-2xl border border-[#d9d9e8] bg-white p-6 shadow-soft">
       <p className="text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
         {title}
       </p>
       <ul className="mt-5 space-y-3">
         {items.map((it) => (
-          <li key={it} className="flex items-start gap-3 text-base text-ink">
+          <li key={it} className="flex items-start gap-3 text-base text-[#26215c]">
             <span
               className={[
                 "mt-2 h-1.5 w-1.5 shrink-0 rounded-full",
-                tone === "ink" ? "bg-accent" : "bg-primary",
+                tone === "ink" ? "bg-accent" : "bg-[#7f77dd]",
               ].join(" ")}
             />
             <span>{it}</span>
@@ -1012,7 +1011,7 @@ function PrimaryButton({
   return (
     <button
       onClick={onClick}
-      className="inline-flex items-center justify-center gap-2 rounded-full bg-ink px-7 py-4 text-base font-medium text-white shadow-soft transition-all hover:translate-y-[-1px] hover:shadow-[0_18px_40px_-12px_rgba(38,33,92,0.45)]"
+      className="inline-flex items-center justify-center gap-2 rounded-full bg-[#26215c] px-7 py-4 text-base font-medium text-white shadow-soft transition-all hover:translate-y-[-1px] hover:shadow-[0_18px_40px_-12px_rgba(38,33,92,0.45)]"
     >
       {children}
       <span aria-hidden>→</span>
@@ -1030,7 +1029,7 @@ function SecondaryButton({
   return (
     <button
       onClick={onClick}
-      className="inline-flex items-center justify-center rounded-full border border-border bg-background px-6 py-3 text-sm font-medium text-ink transition-colors hover:bg-secondary"
+      className="inline-flex items-center justify-center rounded-full border border-[#d9d9e8] bg-background px-6 py-3 text-sm font-medium text-[#26215c] transition-colors hover:bg-[#EEEDFE]"
     >
       {children}
     </button>
