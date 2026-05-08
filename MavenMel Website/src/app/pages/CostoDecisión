@@ -1,1 +1,8 @@
-
+export function CostoDecision() {
+  return (
+    <div>
+      <h1>Costo de la Decisión</h1>
+      <p>Aquí irá la calculadora.</p>
+    </div>
+  );
+}
