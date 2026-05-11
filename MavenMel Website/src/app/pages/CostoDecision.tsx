@@ -750,7 +750,7 @@ function StepFriction({
   const insights: string[] = [];
   if (op.errors >= 2)
     insights.push(
-      "Parte del costo de perfiles estratégicos se está consumiendo en tareas operativas.",
+      "Los errores frecuentes generan retrabajos que consumen tiempo y aumentan el costo operativo.",
     );
   if (op.decision >= 2)
     insights.push(
@@ -760,14 +760,14 @@ function StepFriction({
     insights.push(
       "Más de la mitad del trabajo es manual: hay un techo claro de productividad.",
     );
-  if (g.hasStrategic)
-    insights.push("Perfiles estratégicos están dedicando tiempo a tareas operativas.");
-  if (g.hasOperative && g.multipleAreas)
-    insights.push("La consolidación manual parece depender de múltiples áreas.");
   if (g.hasStrategic && op.manual >= 50)
     insights.push(
-      "Parte del tiempo ejecutivo se está consumiendo en tareas que podrían automatizarse.",
+      "Perfiles estratégicos están dedicando tiempo a tareas que podrían automatizarse.",
     );
+  else if (g.hasStrategic)
+    insights.push("Perfiles estratégicos están dedicando tiempo a tareas operativas.");
+  if (g.hasOperative && g.multipleAreas)
+    insights.push("La consolidación de información depende de múltiples áreas sin un flujo claro.");
   if (insights.length === 0)
     insights.push(
       "Aun en operaciones eficientes, suele existir un costo invisible no dimensionado.",
