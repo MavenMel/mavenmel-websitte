@@ -58,9 +58,7 @@ function Index() {
   const [roles, setRoles] = useState<Role[]>([]);
   const [op, setOp] = useState<Operation>({ errors: 1, decision: 1, manual: 50 });
   const [leadForm, setLeadForm] = useState({ nombre: "", email: "", telefono: "", empresa: "" });
-  const [leadSubmitted, setLeadSubmitted] = useState(
-    () => localStorage.getItem("mavenmel_lead_captured") === "true"
-  );
+  const [leadSubmitted, setLeadSubmitted] = useState(false);
   const [isSubmittingLead, setIsSubmittingLead] = useState(false);
   const [leadError, setLeadError] = useState("");
 
@@ -89,7 +87,7 @@ function Index() {
         body: JSON.stringify(leadForm),
       });
       if (res.ok) {
-        localStorage.setItem("mavenmel_lead_captured", "true");
+        sessionStorage.setItem("mavenmel_lead_captured", "true");
         setLeadSubmitted(true);
         setStep(5 as Step);
       } else {
