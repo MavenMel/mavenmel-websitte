@@ -136,7 +136,7 @@ function Index() {
           </span>
         </div>
         <span className="text-xs font-medium text-muted-foreground">
-          {step + 1} / {totalSteps}
+          {alreadyCaptured && step >= 5 ? step : step + 1} / {totalSteps}
         </span>
       </header>
 
@@ -144,7 +144,7 @@ function Index() {
         <div className="h-[3px] w-full overflow-hidden rounded-full bg-[#EEEDFE]">
           <div
             className="h-full rounded-full bg-[#7f77dd] transition-all duration-700 ease-out"
-            style={{ width: `${((step + 1) / totalSteps) * 100}%` }}
+            style={{ width: `${((alreadyCaptured && step >= 5 ? step : step + 1) / totalSteps) * 100}%` }}
           />
         </div>
       </div>
@@ -859,12 +859,12 @@ function StepFriction({
 function FrictionMeter({ score }: { score: number }) {
   const level =
     score < 30
-      ? "Controlado"
+      ? "Optimizado"
       : score < 55
-        ? "Creciente"
+        ? "Riesgo latente"
         : score < 80
-          ? "Elevado"
-          : "Crítico";
+          ? "Pérdida activa"
+          : "Urgente";
   return (
     <div className="rounded-2xl border border-[#d9d9e8] bg-white p-6 shadow-soft sm:p-7">
       <div className="flex items-baseline justify-between">
@@ -951,8 +951,37 @@ function StepOpportunity({
   onBack: () => void;
 }) {
   const g = useGlobal(roles, op);
-  const savedHoursYear = g.monthlyHours * 12 * 0.2;
-  const savedCost = g.yearlyCost * 0.2;
+
+  // % de mejora dinámico según nivel de fricción
+  const savingsPct =
+    g.frictionScore < 30 ? 0.15
+    : g.frictionScore < 55 ? 0.25
+    : g.frictionScore < 80 ? 0.35
+    : 0.45;
+
+  const savedHoursYear = g.monthlyHours * 12 * savingsPct;
+  const savedCost = g.yearlyCost * savingsPct;
+  const pctLabel = `${Math.round(savingsPct * 100)}%`;
+
+  // Retrabajos dinámico según op.errors
+  const retrabajosValue =
+    op.errors === 0 ? "−10%"
+    : op.errors === 1 ? "−15%"
+    : op.errors === 2 ? "−30%"
+    : "−50%";
+
+  // Velocidad de decisiones dinámica según op.decision
+  const decisionValue =
+    op.decision === 0 ? "Ya optimizado"
+    : op.decision === 1 ? "2× más rápido"
+    : op.decision === 2 ? "De días a horas"
+    : "De semanas a horas";
+
+  const decisionDetail =
+    op.decision === 0 ? "tus decisiones son ágiles"
+    : op.decision === 1 ? "con información consolidada"
+    : op.decision === 2 ? "consolidando fuentes clave"
+    : "con visibilidad en tiempo real";
 
   return (
     <div className="animate-rise space-y-10">
@@ -961,7 +990,7 @@ function StepOpportunity({
           La oportunidad
         </p>
         <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-[#26215c] sm:text-4xl">
-          Reducir solo un 20% de fricción podría representar:
+          Reducir un {pctLabel} de ineficiencia podría representar:
         </h2>
       </div>
 
@@ -973,13 +1002,13 @@ function StepOpportunity({
         />
         <OpportunityCard
           title="Menos retrabajos"
-          value="−20%"
-          detail="errores y reprocesos"
+          value={retrabajosValue}
+          detail="en errores y reprocesos"
         />
         <OpportunityCard
           title="Decisiones más rápidas"
-          value="+ velocidad"
-          detail="con información consolidada"
+          value={decisionValue}
+          detail={decisionDetail}
         />
         <OpportunityCard
           title="Impacto operativo"
