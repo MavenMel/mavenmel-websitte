@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Check, ArrowRight, Search, TrendingUp, Wrench, GraduationCap, Clock, FileText, LayoutDashboard, Zap, Users, Building2, ChevronRight } from "lucide-react";
+import { Check, ArrowRight, Search, TrendingUp, Wrench, GraduationCap, FileText, ChevronRight, Sparkles, Clock3, Layers } from "lucide-react";
 import { Link } from "react-router";
 
 export function Servicios() {
@@ -54,41 +54,65 @@ export function Servicios() {
     { fase: "Dashboard + Cierre", semana: "Semana 5" },
   ];
 
-  const coachingFase1 = [
-    "Dashboard de madurez: datos, gobernanza, cultura, tecnología",
-    "Matriz de iniciativas priorizadas (score R.I.C.E.)",
-    "Plan de 12 meses: acciones, cronograma, costos",
-    "Tablero de What Ifs para priorización de iniciativas",
-    "Presentación ejecutiva a liderazgo (90 min)",
+  const idealPara = [
+    "Founders",
+    "Gerentes",
+    "Líderes comerciales",
+    "Operaciones",
+    "Startups",
+    "Empresas con BI sin claridad",
   ];
 
-  const coachingFase2 = [
-    "Sesiones mensuales con liderazgo: revisión y validación de datos",
-    "Sesiones mensuales con equipos: entrenamiento y coaching",
-    "Informes mensuales de avance: adopción y decisiones",
+  const claroAntes = [
+    "Formulario breve con contexto del problema",
+    "Archivos opcionales: dashboards, screenshots, reportes",
   ];
 
-  const coachingBeneficios = [
+  const claroDurante = [
+    "Análisis en vivo con preguntas estratégicas",
+    "Identificación de fugas e inconsistencias",
+    "Hipótesis y priorización de variables",
+    "Mapa de decisiones clave",
+  ];
+
+  const claroDespues = [
+    "Resumen ejecutivo con hallazgos",
+    "Próximos pasos concretos",
+    "Quick wins accionables",
+  ];
+
+  const claroMethod = [
+    { letter: "C", name: "Contexto", desc: "Qué está pasando realmente." },
+    { letter: "L", name: "Lectura", desc: "Qué dicen los datos vs. qué cree el negocio." },
+    { letter: "A", name: "Anomalías", desc: "Fugas, inconsistencias, fricciones, sesgos." },
+    { letter: "R", name: "Riesgo y retorno", desc: "Qué decisión tiene más impacto." },
+    { letter: "O", name: "Output accionable", desc: "Qué hacer primero." },
+  ];
+
+  const coachingNiveles = [
     {
-      grupo: "Para el Liderazgo",
-      items: [
-        "Recupera tiempo en reuniones y decisiones basadas en datos.",
-        "Identifica y cuantifica riesgos proactivamente.",
-      ],
+      num: "01",
+      nombre: "Claridad",
+      desc: "1 sesión puntual",
+      detalle: "El punto de entrada ideal. Una sesión de 60–90 min para ganar claridad sobre el problema.",
+      tag: "Entry",
+      icon: Sparkles,
     },
     {
-      grupo: "Para los Equipos Operacionales",
-      items: [
-        "Claridad en la comunicación y priorización objetiva.",
-        "Entrenamiento en cultura de análisis y defensa de recomendaciones.",
-      ],
+      num: "02",
+      nombre: "Acompañamiento",
+      desc: "2–4 sesiones al mes",
+      detalle: "Para líderes que necesitan un aliado estratégico que los acompañe en decisiones recurrentes.",
+      tag: "Growth",
+      icon: Clock3,
     },
     {
-      grupo: "Para la Organización",
-      items: [
-        "Gobierno de datos, ROI mejorado y capacidad instalada.",
-        "Infraestructura de datos escalable para el crecimiento.",
-      ],
+      num: "03",
+      nombre: "Advisor Estratégico",
+      desc: "Acceso directo + revisiones + soporte async",
+      detalle: "Presencia continua: revisiones, slack/WhatsApp, alertas proactivas y co-pilotaje de decisiones.",
+      tag: "Premium",
+      icon: Layers,
     },
   ];
 
@@ -290,78 +314,163 @@ export function Servicios() {
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-[#26215C] mb-4">Coaching Analítico</h2>
             <p className="text-lg text-[#26215C]/70 max-w-2xl mb-16">
-              Acompañamiento estratégico para validar decisiones, sostener prioridades y desarrollar capacidades analíticas en tu equipo.
+              Acompañamiento estratégico para convertir información compleja en decisiones claras, rápidas y con impacto medible en tu P&L.
             </p>
 
-            <div className="grid lg:grid-cols-2 gap-12 mb-16">
-              {/* Entregables */}
-              <div className="space-y-6">
-                <div className="bg-white rounded-2xl p-6 shadow-md border border-[#7F77DD]/10">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-9 h-9 rounded-lg bg-[#7F77DD]/10 flex items-center justify-center">
-                      <FileText className="text-[#7F77DD]" size={18} />
-                    </div>
-                    <h3 className="font-bold text-[#26215C]">Semanas 1–3 · Diagnóstico Ejecutivo</h3>
-                  </div>
-                  <ul className="space-y-2">
-                    {coachingFase1.map((item, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-[#26215C]/80">
-                        <Check className="text-[#7F77DD] flex-shrink-0 mt-0.5" size={16} />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+            {/* ── Sesión de Claridad ── */}
+            <div className="bg-white rounded-3xl border border-[#7F77DD]/15 shadow-lg overflow-hidden mb-16">
+              {/* Header */}
+              <div className="bg-gradient-to-r from-[#26215C] to-[#7F77DD] px-8 py-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                  <p className="text-[#D4537E] font-bold text-xs uppercase tracking-widest mb-1">Producto de entrada</p>
+                  <h3 className="text-2xl font-bold text-white">Sesión de Claridad Analítica</h3>
                 </div>
-
-                <div className="bg-white rounded-2xl p-6 shadow-md border border-[#7F77DD]/10">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-9 h-9 rounded-lg bg-[#D4537E]/10 flex items-center justify-center">
-                      <Users className="text-[#D4537E]" size={18} />
-                    </div>
-                    <h3 className="font-bold text-[#26215C]">Mes 1 en adelante · Coaching</h3>
-                  </div>
-                  <ul className="space-y-2">
-                    {coachingFase2.map((item, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-[#26215C]/80">
-                        <Check className="text-[#D4537E] flex-shrink-0 mt-0.5" size={16} />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+                <div className="flex items-center gap-2 bg-white/10 border border-white/20 rounded-xl px-4 py-2 self-start sm:self-auto">
+                  <FileText className="text-white/70" size={16} />
+                  <span className="text-white font-semibold text-sm whitespace-nowrap">60 – 90 min</span>
                 </div>
               </div>
 
-              {/* Beneficios */}
-              <div className="space-y-4">
-                {coachingBeneficios.map((b, i) => (
+              <div className="p-8 grid lg:grid-cols-3 gap-8">
+                {/* Ideal para */}
+                <div>
+                  <p className="text-xs font-bold text-[#D4537E] uppercase tracking-widest mb-4">Ideal para</p>
+                  <div className="flex flex-wrap gap-2">
+                    {idealPara.map((item, i) => (
+                      <span key={i} className="bg-[#EEEDFE] text-[#7F77DD] text-xs font-semibold px-3 py-1.5 rounded-full">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Qué incluye: Antes / Durante / Después */}
+                <div className="lg:col-span-2">
+                  <p className="text-xs font-bold text-[#D4537E] uppercase tracking-widest mb-4">Qué incluye</p>
+                  <div className="grid sm:grid-cols-3 gap-4">
+                    <div className="bg-[#EEEDFE]/40 rounded-2xl p-4 border border-[#7F77DD]/10">
+                      <p className="text-xs font-bold text-[#7F77DD] uppercase mb-3">Antes</p>
+                      <ul className="space-y-2">
+                        {claroAntes.map((item, i) => (
+                          <li key={i} className="flex items-start gap-2 text-xs text-[#26215C]/70 leading-relaxed">
+                            <ChevronRight className="text-[#7F77DD] flex-shrink-0 mt-0.5" size={12} />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="bg-[#7F77DD]/5 rounded-2xl p-4 border border-[#7F77DD]/15">
+                      <p className="text-xs font-bold text-[#7F77DD] uppercase mb-3">Durante</p>
+                      <ul className="space-y-2">
+                        {claroDurante.map((item, i) => (
+                          <li key={i} className="flex items-start gap-2 text-xs text-[#26215C]/70 leading-relaxed">
+                            <ChevronRight className="text-[#7F77DD] flex-shrink-0 mt-0.5" size={12} />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="bg-[#D4537E]/5 rounded-2xl p-4 border border-[#D4537E]/15">
+                      <p className="text-xs font-bold text-[#D4537E] uppercase mb-3">Después</p>
+                      <ul className="space-y-2">
+                        {claroDespues.map((item, i) => (
+                          <li key={i} className="flex items-start gap-2 text-xs text-[#26215C]/70 leading-relaxed">
+                            <ChevronRight className="text-[#D4537E] flex-shrink-0 mt-0.5" size={12} />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* El verdadero valor */}
+              <div className="mx-8 mb-8 bg-[#26215C] rounded-2xl p-6">
+                <p className="text-[#D4537E] text-xs font-bold uppercase tracking-widest mb-3">El verdadero valor no es la reunión</p>
+                <div className="flex flex-wrap gap-x-8 gap-y-2">
+                  {["Cómo pienso", "Cómo hago las preguntas", "Cómo conecto variables", "Cómo aterrizo complejidad"].map((v, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#7F77DD]" />
+                      <span className="text-white/80 text-sm">{v}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-white/50 text-xs mt-3">Esto convierte una videollamada en un producto intelectual.</p>
+              </div>
+            </div>
+
+            {/* ── Método C.L.A.R.O. ── */}
+            <div className="mb-16">
+              <div className="text-center mb-8">
+                <span className="inline-block bg-[#EEEDFE] text-[#7F77DD] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-3">Framework propio</span>
+                <h3 className="text-3xl font-bold text-[#26215C]">Método C.L.A.R.O.</h3>
+                <p className="text-[#26215C]/60 mt-2 text-sm max-w-md mx-auto">Cada sesión sigue este proceso para llevar complejidad a decisiones concretas.</p>
+              </div>
+
+              <div className="grid sm:grid-cols-5 gap-3">
+                {claroMethod.map((m, i) => (
                   <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    key={m.letter}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.1 }}
-                    className="bg-[#EEEDFE]/40 rounded-2xl p-5 border border-[#7F77DD]/15"
+                    transition={{ duration: 0.4, delay: i * 0.08 }}
+                    className="relative bg-white rounded-2xl p-5 border border-[#7F77DD]/10 shadow-sm text-center group hover:border-[#7F77DD]/40 hover:shadow-md transition-all"
                   >
-                    <p className="font-bold text-[#26215C] mb-2 text-sm">{b.grupo}</p>
-                    <ul className="space-y-1.5">
-                      {b.items.map((item, j) => (
-                        <li key={j} className="flex items-start gap-2 text-sm text-[#26215C]/70">
-                          <ChevronRight className="text-[#7F77DD] flex-shrink-0 mt-0.5" size={14} />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#7F77DD] to-[#D4537E] flex items-center justify-center mx-auto mb-3 text-white font-black text-xl">
+                      {m.letter}
+                    </div>
+                    <p className="font-bold text-[#26215C] text-sm mb-1">{m.name}</p>
+                    <p className="text-[#26215C]/55 text-xs leading-relaxed">{m.desc}</p>
+                    {i < 4 && (
+                      <div className="hidden sm:block absolute -right-2 top-1/2 -translate-y-1/2 z-10">
+                        <ChevronRight className="text-[#7F77DD]/40" size={16} />
+                      </div>
+                    )}
                   </motion.div>
                 ))}
               </div>
             </div>
 
-            {/* Precio visible: solo sesión 1:1 */}
+            {/* ── Niveles del servicio ── */}
+            <div className="mb-16">
+              <h3 className="text-2xl font-bold text-[#26215C] mb-8">Niveles del servicio</h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                {coachingNiveles.map((n, i) => (
+                  <motion.div
+                    key={n.num}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.1 }}
+                    className={`rounded-2xl p-6 border flex flex-col gap-4 ${i === 2 ? "bg-gradient-to-br from-[#26215C] to-[#7F77DD] border-transparent text-white" : "bg-white border-[#7F77DD]/10 shadow-md"}`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${i === 2 ? "bg-white/15" : "bg-gradient-to-br from-[#7F77DD] to-[#D4537E]"}`}>
+                        <n.icon className={i === 2 ? "text-white" : "text-white"} size={20} />
+                      </div>
+                      <span className={`text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full ${i === 2 ? "bg-white/15 text-white" : "bg-[#EEEDFE] text-[#7F77DD]"}`}>
+                        {n.tag}
+                      </span>
+                    </div>
+                    <div>
+                      <p className={`text-xs font-bold uppercase tracking-widest mb-1 ${i === 2 ? "text-white/50" : "text-[#D4537E]"}`}>Nivel {n.num}</p>
+                      <h4 className={`text-xl font-bold mb-1 ${i === 2 ? "text-white" : "text-[#26215C]"}`}>{n.nombre}</h4>
+                      <p className={`text-sm font-semibold mb-3 ${i === 2 ? "text-white/70" : "text-[#7F77DD]"}`}>{n.desc}</p>
+                      <p className={`text-sm leading-relaxed ${i === 2 ? "text-white/70" : "text-[#26215C]/60"}`}>{n.detalle}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Precio + CTA */}
             <div className="bg-[#26215C] rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
               <div>
-                <p className="text-white/60 text-sm font-semibold uppercase tracking-widest mb-1">Sesión 1:1</p>
+                <p className="text-white/60 text-sm font-semibold uppercase tracking-widest mb-1">Sesión de Claridad Analítica</p>
                 <p className="text-5xl font-bold text-white">$65 USD</p>
-                <p className="text-white/70 mt-1">por hora · agenda directamente</p>
+                <p className="text-white/60 mt-1 text-sm">por sesión · Niveles 2 y 3 a cotización</p>
               </div>
               <Link
                 to="/contacto"
