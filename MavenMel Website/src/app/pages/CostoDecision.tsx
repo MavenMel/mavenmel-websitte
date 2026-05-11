@@ -218,7 +218,7 @@ function StepIntro({ onNext }: { onNext: () => void }) {
 
       <div className="mt-16 flex items-center gap-3 text-sm text-[#6b7280]">
         <span className="h-px w-8 bg-border" />
-        Sin registro · sin envío de datos
+        Al final te pedimos tu correo para enviarte los resultados.
       </div>
     </div>
   );
