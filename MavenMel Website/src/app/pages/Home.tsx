@@ -102,6 +102,9 @@ export function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
+                <p className="text-sm font-semibold tracking-[0.2em] uppercase text-[#D4537E] mb-4">
+                  El dato es el medio. La decisión es el producto.
+                </p>
                 <h1 className="text-5xl lg:text-7xl font-bold text-[#26215C] leading-tight">
                   Las decisiones de hoy
                   <br />
@@ -115,7 +118,7 @@ export function Home() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-xl text-[#26215C]/70 max-w-lg leading-relaxed"
               >
-                Trabajo con líderes para que sus decisiones críticas estén respaldadas por información confiable, reduzcan el riesgo operativo y aceleren el crecimiento.
+                Trabajo 1:1 con líderes para que sus decisiones críticas dejen de tomarse a ciegas y empiecen a mover el margen.
               </motion.p>
 
               <motion.div
@@ -125,17 +128,17 @@ export function Home() {
                 className="flex flex-col sm:flex-row gap-4"
               >
                 <Link
-                  to="/contacto"
+                  to="/diagnostico"
                   className="inline-flex items-center justify-center gap-2 bg-[#D4537E] text-white px-8 py-4 rounded-xl hover:opacity-90 transition-opacity shadow-lg shadow-[#D4537E]/20"
                 >
-                  Agenda tu sesión discovery
+                  Haz el diagnóstico gratis
                   <ArrowRight size={20} />
                 </Link>
                 <Link
-                  to="/diagnostico"
+                  to="/contacto"
                   className="inline-flex items-center justify-center gap-2 bg-white text-[#7F77DD] px-8 py-4 rounded-xl border-2 border-[#7F77DD] hover:bg-[#7F77DD] hover:text-white transition-colors"
                 >
-                  Haz el diagnóstico gratis
+                  Agenda tu sesión discovery
                 </Link>
               </motion.div>
             </motion.div>
@@ -149,13 +152,38 @@ export function Home() {
             >
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="https://lh3.googleusercontent.com/u/0/d/1ODLsQqzu8TLkI4QqaGfb1h3u-lEQEgXd"
-                  alt="Business leader analyzing data"
+                  src="/images/hero.jpg"
+                  alt="Melisa Tesillo, fundadora de Maven Mel"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="absolute -bottom-4 -right-4 w-64 h-64 bg-gradient-to-br from-[#7F77DD] to-[#D4537E] rounded-2xl -z-10 blur-3xl opacity-20" />
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust / Credibility Strip */}
+      <section className="py-12 bg-white border-y border-[#7F77DD]/10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 text-center md:text-left">
+            <p className="text-lg text-[#26215C] font-semibold max-w-xl">
+              No vendo tecnología. Hago que la información que ya tienes mueva tu P&amp;L.
+            </p>
+            <div className="flex flex-wrap justify-center md:justify-end gap-x-10 gap-y-4">
+              <div>
+                <p className="text-3xl font-bold text-[#7F77DD]">14+</p>
+                <p className="text-sm text-[#26215C]/60">años en transformación analítica</p>
+              </div>
+              <div>
+                <p className="text-3xl font-bold text-[#7F77DD]">1:1</p>
+                <p className="text-sm text-[#26215C]/60">acompañamiento a líderes</p>
+              </div>
+              <div>
+                <p className="text-3xl font-bold text-[#7F77DD]">LATAM</p>
+                <p className="text-sm text-[#26215C]/60">retail · manufactura · logística</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -212,7 +240,7 @@ export function Home() {
       {/* Services Cards */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
@@ -226,6 +254,11 @@ export function Home() {
                 <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#7F77DD] to-[#D4537E] flex items-center justify-center mb-6">
                   <service.icon className="text-white" size={28} />
                 </div>
+                {index === 0 && (
+                  <span className="inline-block mb-3 text-xs font-bold tracking-wide uppercase text-[#D4537E] bg-[#D4537E]/10 px-3 py-1 rounded-full">
+                    Empieza aquí
+                  </span>
+                )}
                 <h3 className="text-2xl font-bold text-[#26215C] mb-2">
                   {service.title}
                 </h3>
