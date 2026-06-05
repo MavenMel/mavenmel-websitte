@@ -136,6 +136,57 @@ export function Servicios() {
     "Ebook exclusivo",
   ];
 
+  const academyFormatos = [
+    { titulo: "On Demand", desc: "Cursos grabados que tu equipo toma a su ritmo, cuando los necesita." },
+    { titulo: "Presencial / En vivo", desc: "Sesiones en vivo, presenciales o virtuales, con acompañamiento directo." },
+    { titulo: "Workshops", desc: "Talleres intensivos y prácticos para resolver un reto concreto del equipo." },
+    { titulo: "A la medida", desc: "Programas construidos según los retos, los datos y los objetivos de tu organización." },
+  ];
+
+  const academyCursos = [
+    {
+      titulo: "El arte de preguntar",
+      para: "Formular la pregunta de negocio correcta y responderla con la métrica que mueve la decisión.",
+      temas: [
+        "Técnicas y metodologías para hacer preguntas de negocio",
+        "De la pregunta a la métrica que la responde",
+        "Tipos de decisiones y sesgos al leer los datos",
+        "Caso Netflix: del costo por hora vista a producir contenido propio",
+      ],
+    },
+    {
+      titulo: "Fundamentos de Inteligencia de Negocios (BI)",
+      para: "Para líderes y equipos que quieren decidir mejor con datos, sin dominar lo técnico.",
+      temas: [
+        "Data Literacy y el arte de hacer preguntas de negocio",
+        "Storytelling y visualización para decisiones",
+        "Diseño de dashboards que sí se usan",
+        "ETL, transformación y modelamiento de datos",
+        "Ejercicio práctico en Power BI",
+      ],
+    },
+    {
+      titulo: "Monetización de Datos",
+      para: "Convierte la información de tu organización en valor financiero medible.",
+      temas: [
+        "Marco I-W-S: mejorar, empaquetar y vender (MIT CISR)",
+        "Indicadores para medir el ROI de los datos",
+        "Casos reales: BBVA, Walmart, P&G, E100",
+        "Data Product Canvas para diseñar productos de datos",
+      ],
+    },
+    {
+      titulo: "Power BI en la práctica",
+      para: "Construye reportes y tableros accionables en Power BI, paso a paso.",
+      temas: [
+        "Modelado de datos y relaciones",
+        "Visualizaciones efectivas",
+        "Buenas prácticas de diseño de tableros",
+        "De los datos a la decisión",
+      ],
+    },
+  ];
+
   return (
     <div>
       {/* Hero */}
@@ -570,9 +621,54 @@ export function Servicios() {
               <div className="h-px flex-1 bg-[#7F77DD]/20" />
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-[#26215C] mb-4">Academy</h2>
-            <p className="text-lg text-[#26215C]/70 max-w-3xl mb-16">
-              Convertimos el análisis de datos en una herramienta humana que reduce la sobrecarga operativa, devolviendo tiempo valioso a tu equipo. Capacitamos a tu personal en herramientas analíticas y metodologías modernas, impulsando una cultura de aprendizaje continuo.
+            <p className="text-lg text-[#26215C]/70 max-w-3xl mb-10">
+              Formación analítica para que tu equipo decida mejor y más rápido. Cursos on demand, sesiones en vivo —presenciales o virtuales—, workshops intensivos o programas construidos a la medida de tu organización.
             </p>
+
+            {/* Formatos */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+              {academyFormatos.map((f, i) => (
+                <div key={i} className="bg-white rounded-2xl p-6 shadow-md border border-[#7F77DD]/10">
+                  <h3 className="font-bold text-[#26215C] mb-2">{f.titulo}</h3>
+                  <p className="text-sm text-[#26215C]/70 leading-relaxed">{f.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Cursos */}
+            <div className="mb-12">
+              <h3 className="text-2xl font-bold text-[#26215C] mb-6">Cursos disponibles</h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                {academyCursos.map((c, i) => (
+                  <div key={i} className="bg-white rounded-2xl p-6 shadow-md border border-[#7F77DD]/10">
+                    {(c as any).badge && (
+                      <span className="inline-block mb-3 text-xs font-bold uppercase tracking-wide text-[#D4537E] bg-[#D4537E]/10 px-3 py-1 rounded-full">
+                        {(c as any).badge}
+                      </span>
+                    )}
+                    <h4 className="text-lg font-bold text-[#26215C] mb-1">{c.titulo}</h4>
+                    <p className="text-sm text-[#7F77DD] font-semibold mb-4">{c.para}</p>
+                    <ul className="space-y-2">
+                      {c.temas.map((t, j) => (
+                        <li key={j} className="flex items-start gap-2 text-sm text-[#26215C]/80">
+                          <Check className="text-[#7F77DD] flex-shrink-0 mt-0.5" size={16} />
+                          {t}
+                        </li>
+                      ))}
+                    </ul>
+                    {(c as any).link && (
+                      <Link
+                        to={(c as any).link}
+                        className="inline-flex items-center gap-2 mt-5 text-[#7F77DD] hover:gap-3 transition-all font-semibold text-sm"
+                      >
+                        Lista de espera
+                        <ArrowRight size={16} />
+                      </Link>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
 
             <div className="grid md:grid-cols-3 gap-8 mb-12">
               {/* Entregables */}
@@ -593,14 +689,10 @@ export function Servicios() {
                 <h3 className="font-bold text-[#26215C] mb-4">Metodología</h3>
                 <div className="space-y-4">
                   <div>
-                    <p className="text-xs font-bold text-[#D4537E] uppercase mb-1">Modalidades</p>
-                    <p className="text-sm text-[#26215C]/80">Presencial · Virtual · On Demand</p>
-                  </div>
-                  <div>
                     <p className="text-xs font-bold text-[#D4537E] uppercase mb-1">Dinámica</p>
                     <ul className="space-y-1 text-sm text-[#26215C]/80">
-                      <li>• Mínimo 5, máximo 10 participantes.</li>
-                      <li>• On demand: a discreción del usuario.</li>
+                      <li>• Grupos de 5 a 10 participantes (in-company).</li>
+                      <li>• On demand: a tu propio ritmo, sin límite de cupo.</li>
                     </ul>
                   </div>
                 </div>
