@@ -207,31 +207,36 @@ export function Servicios() {
           {/* Cards resumen */}
           <div className="grid md:grid-cols-4 gap-4 mt-16">
             {[
-              { num: "01", label: "Diagnóstico", icon: Search },
-              { num: "02", label: "Coaching Analítico", icon: TrendingUp },
-              { num: "03", label: "Atelier", icon: Wrench },
-              { num: "04", label: "Academy", icon: GraduationCap },
+              { num: "01", label: "Diagnóstico", icon: Search, anchor: "diagnostico" },
+              { num: "02", label: "Coaching Analítico", icon: TrendingUp, anchor: "coaching" },
+              { num: "03", label: "Atelier", icon: Wrench, anchor: "atelier" },
+              { num: "04", label: "Academy", icon: GraduationCap, anchor: "academy" },
             ].map((s, i) => (
-              <motion.div
+              <motion.a
                 key={s.num}
+                href={`#${s.anchor}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById(s.anchor)?.scrollIntoView({ behavior: "smooth" });
+                }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="bg-white rounded-2xl p-6 shadow-md border border-[#7F77DD]/10 text-center"
+                className="block cursor-pointer bg-white rounded-2xl p-6 shadow-md border border-[#7F77DD]/10 text-center hover:shadow-xl hover:border-[#7F77DD]/40 hover:-translate-y-1 transition-all"
               >
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#7F77DD] to-[#D4537E] flex items-center justify-center mx-auto mb-3">
                   <s.icon className="text-white" size={22} />
                 </div>
                 <p className="text-xs font-bold text-[#D4537E] mb-1">{s.num}</p>
                 <p className="font-bold text-[#26215C] text-sm">{s.label}</p>
-              </motion.div>
+              </motion.a>
             ))}
           </div>
         </div>
       </section>
 
       {/* ── 01 DIAGNÓSTICO ── */}
-      <section className="py-24 bg-white">
+      <section id="diagnostico" className="py-24 bg-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -351,7 +356,7 @@ export function Servicios() {
       </section>
 
       {/* ── 02 COACHING ANALÍTICO ── */}
-      <section className="py-24 bg-gradient-to-b from-[#EEEDFE]/30 to-white">
+      <section id="coaching" className="py-24 bg-gradient-to-b from-[#EEEDFE]/30 to-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -536,7 +541,7 @@ export function Servicios() {
       </section>
 
       {/* ── 03 ATELIER ── */}
-      <section className="py-24 bg-white">
+      <section id="atelier" className="py-24 bg-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -608,7 +613,7 @@ export function Servicios() {
       </section>
 
       {/* ── 04 ACADEMY ── */}
-      <section className="py-24 bg-gradient-to-b from-[#EEEDFE]/30 to-white">
+      <section id="academy" className="py-24 bg-gradient-to-b from-[#EEEDFE]/30 to-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
