@@ -82,6 +82,24 @@ export function Home() {
     },
   ];
 
+  const testimonios = [
+    {
+      nombre: "Ingrid Carolina Calle Ariza",
+      cargo: "Coordinadora de Tecnología · Fundación Santo Domingo",
+      curso: "Fundamentos de BI",
+    },
+    {
+      nombre: "Álvaro Pacheco",
+      cargo: "Project Manager · Schweitzer Engineering Laboratories (SEL)",
+      curso: "Fundamentos de BI",
+    },
+    {
+      nombre: "Daniel Giraldo",
+      cargo: "Gerente de Droguerías · Éticos Ltda",
+      curso: "Monetización de Datos",
+    },
+  ];
+
   return (
     <div>
       {/* Hero Section */}
@@ -275,6 +293,41 @@ export function Home() {
                   Conocer más
                   <ArrowRight size={16} />
                 </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonios */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold text-[#26215C] mb-4">
+              Profesionales que se han formado conmigo
+            </h2>
+            <p className="text-lg text-[#26215C]/60 max-w-2xl mx-auto">
+              Líderes y equipos de empresas reales que han pasado por mis programas.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonios.map((t, index) => (
+              <motion.div
+                key={t.nombre}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-[#EEEDFE]/40 rounded-2xl p-8 border border-[#7F77DD]/10 flex flex-col"
+              >
+                <div className="flex-1">
+                  <p className="font-bold text-[#26215C] text-lg">{t.nombre}</p>
+                  <p className="text-sm text-[#26215C]/60 mt-1">{t.cargo}</p>
+                </div>
+                <span className="inline-flex items-center gap-2 self-start mt-6 text-xs font-semibold text-[#7F77DD] bg-white px-3 py-1.5 rounded-full border border-[#7F77DD]/20">
+                  <GraduationCap size={14} />
+                  {t.curso}
+                </span>
               </motion.div>
             ))}
           </div>
