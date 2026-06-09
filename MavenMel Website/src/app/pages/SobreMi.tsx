@@ -8,8 +8,13 @@ import {
   Lightbulb,
 } from "lucide-react";
 import { Link } from "react-router";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export function SobreMi() {
+  usePageMeta(
+    "Sobre mí · Melisa Tesillo | MavenMel",
+    "14+ años liderando transformación analítica en LATAM. Tu coach analítica para decisiones respaldadas por datos."
+  );
   const credentials = [
     "14+ años en consultoría de datos y tecnología",
     "Proyectos de adopción tecnológica en múltiples industrias",

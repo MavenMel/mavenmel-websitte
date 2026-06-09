@@ -1,9 +1,14 @@
 import { Link } from "react-router";
+import { usePageMeta } from "../hooks/usePageMeta";
 import { motion } from "motion/react";
 import { ArrowRight, TrendingUp, GraduationCap, DollarSign, Mail, Search, Wrench, AlertTriangle, Clock } from "lucide-react";
 import { useState } from "react";
 
 export function Home() {
+  usePageMeta(
+    "MavenMel | Coaching Analítico para Líderes",
+    "Coaching analítico 1:1 para líderes. Convierte la información que ya tienes en decisiones que mueven tu P&L."
+  );
   const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -206,6 +211,22 @@ export function Home() {
         </div>
       </section>
 
+      {/* Experiencia */}
+      <section className="py-14 bg-white border-b border-[#7F77DD]/10">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8 text-center">
+          <p className="text-sm font-semibold tracking-widest uppercase text-[#26215C]/50 mb-8">
+            Experiencia liderando transformación en
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+            {["Grupo EVO", "CELES", "MANAR", "Datecsa", "SIMPLEXITY"].map((c) => (
+              <span key={c} className="text-lg lg:text-xl font-bold text-[#26215C]/40">
+                {c}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Problem Section */}
       <motion.section
         initial={{ opacity: 0, y: 40 }}
@@ -299,6 +320,40 @@ export function Home() {
         </div>
       </section>
 
+      {/* Cómo funciona */}
+      <section className="py-24 bg-[#EEEDFE]">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold text-[#26215C] mb-4">
+              Cómo trabajamos juntos
+            </h2>
+            <p className="text-lg text-[#26215C]/60 max-w-2xl mx-auto">
+              Un proceso claro, sin rodeos, enfocado en que tus decisiones muevan el resultado.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { n: "01", t: "Diagnóstico", d: "Entendemos tu negocio y dónde se están tomando decisiones críticas sin información confiable." },
+              { n: "02", t: "Diseño y acompañamiento", d: "Construimos las piezas que tus decisiones necesitan y te acompaño 1:1 para que tu equipo las adopte." },
+              { n: "03", t: "Decisiones que mueven el P&L", d: "Tu equipo decide con evidencia y el impacto se ve en el margen, no en un tablero más." },
+            ].map((s, i) => (
+              <motion.div
+                key={s.n}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="bg-white rounded-2xl p-8 shadow-md"
+              >
+                <span className="text-4xl font-bold text-[#7F77DD]/30">{s.n}</span>
+                <h3 className="text-xl font-bold text-[#26215C] mt-3 mb-2">{s.t}</h3>
+                <p className="text-[#26215C]/70 leading-relaxed">{s.d}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Testimonios */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -331,6 +386,25 @@ export function Home() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* CTA band */}
+      <section className="py-20 bg-gradient-to-br from-[#26215C] to-[#7F77DD]">
+        <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
+          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+            ¿Listo para que tus decisiones muevan el margen?
+          </h2>
+          <p className="text-xl text-white/80 mb-8">
+            Empieza por el diagnóstico gratis. En minutos sabrás dónde estás perdiendo valor.
+          </p>
+          <Link
+            to="/diagnostico"
+            className="inline-flex items-center justify-center gap-2 bg-white text-[#7F77DD] px-8 py-4 rounded-xl hover:bg-white/90 transition-colors shadow-xl font-semibold"
+          >
+            Haz el diagnóstico gratis
+            <ArrowRight size={20} />
+          </Link>
         </div>
       </section>
 

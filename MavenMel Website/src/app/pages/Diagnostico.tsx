@@ -2,8 +2,13 @@ import { motion } from "motion/react";
 import { useState } from "react";
 import { CheckCircle2, Circle, ArrowRight, Clock, FileText, Award, MessageSquare, Loader2 } from "lucide-react";
 import { Link } from "react-router";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export function Diagnostico() {
+  usePageMeta(
+    "Diagnóstico gratis | MavenMel",
+    "Descubre en minutos qué decisiones críticas estás tomando sin información confiable. Diagnóstico de madurez analítica, gratis."
+  );
   const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>({});
   const [leadSubmitted, setLeadSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);

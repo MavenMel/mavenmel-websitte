@@ -1,6 +1,11 @@
 
 import { useMemo, useState } from "react";
+import { usePageMeta } from "../hooks/usePageMeta";
 export function CostoDecision() {
+  usePageMeta(
+    "Calculadora: el costo de decidir tarde | MavenMel",
+    "Calcula en 3 minutos cuánto tiempo y dinero pierde tu empresa esperando información para decidir."
+  );
   return <Index />;
 }
 
@@ -211,7 +216,7 @@ function StepIntro({ onNext }: { onNext: () => void }) {
       </p>
 
       <div className="mt-12">
-        <PrimaryButton onClick={onNext}>Comenzar</PrimaryButton>
+        <PrimaryButton onClick={onNext}>Calcula cuánto te cuesta decidir tarde</PrimaryButton>
       </div>
 
       <div className="mt-16 flex items-center gap-3 text-sm text-[#6b7280]">

@@ -2,8 +2,13 @@
 import { motion } from "motion/react";
 import { useState } from "react";
 import { Mail, MessageCircle, Send, Calendar } from "lucide-react";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export function Contacto() {
+  usePageMeta(
+    "Contacto | MavenMel",
+    "Agenda tu sesión discovery o escríbeme. Hablemos de cómo tus datos pueden mover tu P&L."
+  );
   const [formData, setFormData] = useState({
     nombre: "",
     email: "",

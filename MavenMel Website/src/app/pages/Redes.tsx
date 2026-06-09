@@ -1,7 +1,12 @@
 import { motion } from "motion/react";
 import { ExternalLink, Calendar, Video } from "lucide-react";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export function Redes() {
+  usePageMeta(
+    "Redes | MavenMel",
+    "Conecta con Melisa Tesillo y MavenMel. Charlas, contenido y comunidad sobre datos y decisiones."
+  );
   const charlas = [
     {
       titulo: "Transformación Digital e IA",

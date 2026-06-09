@@ -1,8 +1,13 @@
 import { motion } from "motion/react";
+import { usePageMeta } from "../hooks/usePageMeta";
 import { Check, ArrowRight, Search, TrendingUp, Wrench, GraduationCap, FileText, ChevronRight, Sparkles, Clock3, Layers } from "lucide-react";
 import { Link } from "react-router";
 
 export function Servicios() {
+  usePageMeta(
+    "Servicios | MavenMel",
+    "Diagnóstico, Coaching Analítico 1:1, Atelier y Academy: cuatro formas de convertir información en decisiones que mueven tu P&L."
+  );
   const diagnosticoFases = [
     {
       num: "01",
