@@ -533,13 +533,15 @@ export function Servicios() {
                 <p className="text-5xl font-bold text-white">$65 USD</p>
                 <p className="text-white/60 mt-1 text-sm">por sesión · Niveles 2 y 3 a cotización</p>
               </div>
-              <Link
-                to="/contacto"
+              <a
+                href="https://calendly.com/mavenmel-info/30min"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-gradient-to-r from-[#7F77DD] to-[#D4537E] text-white px-8 py-4 rounded-xl hover:opacity-90 transition-opacity font-semibold whitespace-nowrap"
               >
                 Agendar sesión
                 <ArrowRight size={18} />
-              </Link>
+              </a>
             </div>
           </motion.div>
         </div>
@@ -744,13 +746,15 @@ export function Servicios() {
           <p className="text-xl text-white/80 mb-8">
             Agenda una sesión discovery gratuita de 20 minutos y te ayudo a identificar qué necesita tu organización.
           </p>
-          <Link
-            to="/contacto"
+          <a
+            href="https://calendly.com/mavenmel-info/30min"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-white text-[#7F77DD] px-8 py-4 rounded-xl hover:bg-white/90 transition-colors shadow-xl font-semibold"
           >
             Agendar sesión discovery
             <ArrowRight size={20} />
-          </Link>
+          </a>
         </div>
       </motion.section>
     </div>

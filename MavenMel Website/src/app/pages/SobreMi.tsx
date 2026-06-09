@@ -7,7 +7,6 @@ import {
   Briefcase,
   Lightbulb,
 } from "lucide-react";
-import { Link } from "react-router";
 import { usePageMeta } from "../hooks/usePageMeta";
 
 export function SobreMi() {
@@ -247,13 +246,15 @@ export function SobreMi() {
             Agenda tu sesión y descubre cómo puedo ayudarte a
             convertir tus datos en decisiones.
           </p>
-          <Link
-            to="/contacto"
+          <a
+            href="https://calendly.com/mavenmel-info/30min"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-white text-[#7F77DD] px-8 py-4 rounded-xl hover:bg-white/90 transition-colors shadow-xl font-semibold"
           >
             Agenda tu sesión
             <ArrowRight size={20} />
-          </Link>
+          </a>
         </div>
       </motion.section>
     </div>

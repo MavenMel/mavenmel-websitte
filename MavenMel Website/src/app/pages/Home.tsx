@@ -157,12 +157,14 @@ export function Home() {
                   Haz el diagnóstico gratis
                   <ArrowRight size={20} />
                 </Link>
-                <Link
-                  to="/contacto"
+                <a
+                  href="https://calendly.com/mavenmel-info/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 bg-white text-[#7F77DD] px-8 py-4 rounded-xl border-2 border-[#7F77DD] hover:bg-[#7F77DD] hover:text-white transition-colors"
                 >
                   Agenda tu sesión discovery
-                </Link>
+                </a>
               </motion.div>
             </motion.div>
 
