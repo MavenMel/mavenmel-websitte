@@ -220,7 +220,7 @@ export function Home() {
             Experiencia liderando transformación en
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-            {["Grupo EVO", "CELES", "MANAR", "Datecsa", "SIMPLEXITY"].map((c) => (
+            {["Grupo Evo", "Celes", "Manar", "Simplexity"].map((c) => (
               <span key={c} className="text-lg lg:text-xl font-bold text-[#26215C]/40">
                 {c}
               </span>
