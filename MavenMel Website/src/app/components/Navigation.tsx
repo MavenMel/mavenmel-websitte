@@ -7,12 +7,13 @@ export function Navigation() {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const links = [
+  const links: { path: string; label: string; external?: boolean }[] = [
     { path: "/", label: "Inicio" },
     { path: "/servicios", label: "Servicios" },
     { path: "/sobre-mi", label: "Sobre mí" },
     { path: "/diagnostico", label: "Diagnóstico" },
     { path: "/costodecision", label: "Calculadora" },
+    { path: "/recursos/", label: "Recursos", external: true },
     { path: "/contacto", label: "Contacto" },
     { path: "/redes", label: "Redes" },
   ];
@@ -33,26 +34,36 @@ export function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-5 xl:gap-8">
-            {links.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`relative py-2 text-sm xl:text-base transition-colors ${
-                  location.pathname === link.path
-                    ? "text-primary"
-                    : "text-foreground/70 hover:text-foreground"
-                }`}
-              >
-                {link.label}
-                {location.pathname === link.path && (
-                  <motion.div
-                    layoutId="activeNav"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-              </Link>
-            ))}
+            {links.map((link) =>
+              link.external ? (
+                <a
+                  key={link.path}
+                  href={link.path}
+                  className="relative py-2 text-sm xl:text-base transition-colors text-foreground/70 hover:text-foreground"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`relative py-2 text-sm xl:text-base transition-colors ${
+                    location.pathname === link.path
+                      ? "text-primary"
+                      : "text-foreground/70 hover:text-foreground"
+                  }`}
+                >
+                  {link.label}
+                  {location.pathname === link.path && (
+                    <motion.div
+                      layoutId="activeNav"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </Link>
+              )
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -75,20 +86,31 @@ export function Navigation() {
             className="lg:hidden bg-white border-t border-border"
           >
             <div className="px-6 py-4 space-y-4">
-              {links.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`block py-2 ${
-                    location.pathname === link.path
-                      ? "text-primary font-medium"
-                      : "text-foreground/70"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {links.map((link) =>
+                link.external ? (
+                  <a
+                    key={link.path}
+                    href={link.path}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block py-2 text-foreground/70"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`block py-2 ${
+                      location.pathname === link.path
+                        ? "text-primary font-medium"
+                        : "text-foreground/70"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
             </div>
           </motion.div>
         )}

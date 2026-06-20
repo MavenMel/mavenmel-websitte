@@ -1,0 +1,67 @@
+:root{
+  --indigo:#26215c; --violet:#7f77dd; --rose:#d4537e;
+  --lav:#eeedfe; --lav2:#d9d9e8; --ink:#2b2950; --grey:#5b5a72;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  color:var(--ink); background:#fbfbfe; line-height:1.7; font-size:19px;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--rose);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* top bar */
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  max-width:1080px;margin:0 auto;padding:22px 24px;
+}
+.brand{display:flex;align-items:center;gap:12px;font-family:'Poppins';font-weight:700;font-size:22px;color:var(--indigo)}
+.brand img{height:38px;width:auto;display:block}
+.brand .dot{color:var(--rose)}
+.topnav a{color:var(--indigo);font-weight:600;font-size:16px;margin-left:24px}
+
+/* container */
+.wrap{max-width:720px;margin:0 auto;padding:24px 24px 80px}
+.breadcrumb{font-size:15px;color:var(--grey);margin:18px 0 26px}
+.breadcrumb a{color:var(--grey)}
+
+/* article */
+.eyebrow{font-family:'Poppins';font-weight:700;letter-spacing:.18em;text-transform:uppercase;font-size:14px;color:var(--violet);margin-bottom:14px}
+h1{font-family:'Poppins';font-weight:800;letter-spacing:-.02em;line-height:1.12;color:var(--indigo);font-size:46px;margin-bottom:18px}
+.meta{font-size:15px;color:var(--grey);margin-bottom:34px}
+article h2{font-family:'Poppins';font-weight:700;color:var(--indigo);font-size:28px;line-height:1.25;margin:42px 0 14px}
+article p{margin:0 0 20px}
+article strong{color:var(--indigo);font-weight:600}
+article ul{margin:0 0 22px 22px}
+article li{margin-bottom:10px}
+.lead{font-size:22px;line-height:1.55;color:var(--indigo);font-weight:500;margin-bottom:30px}
+blockquote{border-left:5px solid var(--rose);background:var(--lav);padding:20px 26px;border-radius:0 12px 12px 0;margin:30px 0;font-family:'Poppins';font-weight:600;font-size:21px;color:var(--indigo);line-height:1.4}
+
+/* CTA */
+.cta{background:var(--indigo);color:#fff;border-radius:20px;padding:44px 40px;margin:54px 0 0;position:relative;overflow:hidden}
+.cta h3{font-family:'Poppins';font-weight:800;font-size:30px;line-height:1.2;margin-bottom:12px}
+.cta p{color:var(--lav2);margin-bottom:26px;font-size:18px}
+.btn{display:inline-block;background:var(--rose);color:#fff;font-family:'Poppins';font-weight:700;font-size:17px;padding:15px 30px;border-radius:999px}
+.btn:hover{text-decoration:none;opacity:.92}
+
+/* recursos hub */
+.hub-head{text-align:center;max-width:680px;margin:30px auto 50px;padding:0 24px}
+.hub-head h1{font-size:52px}
+.hub-head p{font-size:20px;color:var(--grey);margin-top:10px}
+.cards{max-width:920px;margin:0 auto;padding:0 24px 80px;display:grid;grid-template-columns:1fr;gap:22px}
+.card{display:block;border:1px solid var(--lav2);border-radius:18px;padding:30px 32px;background:#fff;transition:.18s}
+.card:hover{text-decoration:none;border-color:var(--violet);box-shadow:0 12px 30px rgba(38,33,92,.08);transform:translateY(-2px)}
+.card .tag{font-family:'Poppins';font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:12px;color:var(--rose)}
+.card h2{font-family:'Poppins';font-weight:700;color:var(--indigo);font-size:26px;line-height:1.25;margin:10px 0 8px}
+.card p{color:var(--grey);font-size:17px}
+
+/* footer */
+.foot{border-top:1px solid var(--lav2);text-align:center;padding:34px 24px;color:var(--grey);font-size:15px}
+.foot a{color:var(--indigo);font-weight:600}
+
+@media(max-width:600px){
+  h1{font-size:36px}.hub-head h1{font-size:40px}article h2{font-size:24px}
+  body{font-size:18px}.lead{font-size:20px}
+}
