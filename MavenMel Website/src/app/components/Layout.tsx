@@ -2,9 +2,12 @@ import { Outlet, useLocation } from "react-router";
 import { useEffect } from "react";
 import { Navigation } from "./Navigation";
 import { Footer } from "./Footer";
+import { useSEO } from "../lib/seo";
 
 export function Layout() {
   const location = useLocation();
+
+  useSEO();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
