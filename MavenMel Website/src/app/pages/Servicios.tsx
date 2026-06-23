@@ -5,8 +5,8 @@ import { Link } from "react-router";
 
 export function Servicios() {
   usePageMeta(
-    "Servicios | MavenMel",
-    "Diagnóstico, Coaching Analítico 1:1, Atelier y Academy: cuatro formas de convertir información en decisiones que mueven tu P&L."
+    "Servicios | Maven Mel",
+    "Diagnóstico, Acompañamiento, Atelier y Academy: cuatro formas de convertir información en decisiones que mueven tu negocio."
   );
   const diagnosticoFases = [
     {
@@ -23,7 +23,7 @@ export function Servicios() {
       desc: "Identificación de decisiones críticas",
       hoy: "Hay decisiones de alto impacto que no tienen trazabilidad clara ni información confiable que las sustente.",
       logro: "Detectamos las decisiones críticas, los riesgos actuales y los cuellos de botella que están generando pérdidas o retrasos.",
-      resultado: "Riesgos y fricciones visibles y priorizados.",
+      resultado: "Riesgos y cuellos de botella visibles y priorizados.",
     },
     {
       num: "03",
@@ -75,7 +75,7 @@ export function Servicios() {
 
   const claroDurante = [
     "Análisis en vivo con preguntas estratégicas",
-    "Identificación de fugas e inconsistencias",
+    "Identificación de pérdidas e inconsistencias",
     "Hipótesis y priorización de variables",
     "Mapa de decisiones clave",
   ];
@@ -89,7 +89,7 @@ export function Servicios() {
   const claroMethod = [
     { letter: "C", name: "Contexto", desc: "Qué está pasando realmente." },
     { letter: "L", name: "Lectura", desc: "Qué dicen los datos vs. qué cree el negocio." },
-    { letter: "A", name: "Anomalías", desc: "Fugas, inconsistencias, fricciones, sesgos." },
+    { letter: "A", name: "Anomalías", desc: "Pérdidas, inconsistencias, cuellos de botella, sesgos." },
     { letter: "R", name: "Riesgo y retorno", desc: "Qué decisión tiene más impacto." },
     { letter: "O", name: "Output accionable", desc: "Qué hacer primero." },
   ];
@@ -213,7 +213,7 @@ export function Servicios() {
           <div className="grid md:grid-cols-4 gap-4 mt-16">
             {[
               { num: "01", label: "Diagnóstico", icon: Search, anchor: "diagnostico" },
-              { num: "02", label: "Coaching Analítico", icon: TrendingUp, anchor: "coaching" },
+              { num: "02", label: "Acompañamiento", icon: TrendingUp, anchor: "coaching" },
               { num: "03", label: "Atelier", icon: Wrench, anchor: "atelier" },
               { num: "04", label: "Academy", icon: GraduationCap, anchor: "academy" },
             ].map((s, i) => (
@@ -360,7 +360,7 @@ export function Servicios() {
         </div>
       </section>
 
-      {/* ── 02 COACHING ANALÍTICO ── */}
+      {/* ── 02 ACOMPAÑAMIENTO ── */}
       <section id="coaching" className="py-24 bg-gradient-to-b from-[#EEEDFE]/30 to-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
@@ -373,7 +373,7 @@ export function Servicios() {
               <span className="text-sm font-bold text-[#D4537E] uppercase tracking-widest">02</span>
               <div className="h-px flex-1 bg-[#7F77DD]/20" />
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-[#26215C] mb-4">Coaching Analítico</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold text-[#26215C] mb-4">Acompañamiento</h2>
             <p className="text-lg text-[#26215C]/70 max-w-2xl mb-16">
               Acompañamiento estratégico para convertir información compleja en decisiones claras, rápidas y con impacto medible en tu P&L.
             </p>
