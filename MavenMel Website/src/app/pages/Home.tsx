@@ -126,12 +126,12 @@ export function Home() {
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
                 <p className="text-sm font-semibold tracking-[0.2em] uppercase text-[#D4537E] mb-4">
-                  El dato es el medio. La decisión es el producto.
+                  El dato es el medio, la decisión es el producto, el resultado la evidencia.
                 </p>
                 <h1 className="text-5xl lg:text-7xl font-bold text-[#26215C] leading-tight">
-                  Tu empresa no tiene un problema de datos.
+                  Que tus datos se conviertan en
                   <br />
-                  <span className="text-[#7F77DD]">Tiene demasiados.</span>
+                  <span className="text-[#7F77DD]">resultados, no en reportes.</span>
                 </h1>
               </motion.div>
 
