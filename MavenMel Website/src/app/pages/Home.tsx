@@ -129,9 +129,9 @@ export function Home() {
                   El dato es el medio. La decisión es el producto.
                 </p>
                 <h1 className="text-5xl lg:text-7xl font-bold text-[#26215C] leading-tight">
-                  Las decisiones de hoy
+                  Tu empresa no tiene un problema de datos.
                   <br />
-                  <span className="text-[#7F77DD]">definen tu P&L de mañana.</span>
+                  <span className="text-[#7F77DD]">Tiene demasiados.</span>
                 </h1>
               </motion.div>
 
@@ -141,7 +141,7 @@ export function Home() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-xl text-[#26215C]/70 max-w-lg leading-relaxed"
               >
-                Acompaño a líderes para que sus decisiones críticas dejen de tomarse a ciegas y empiecen a mover el margen.
+                Convertimos la información que ya tienes en decisiones que puedes tomar a tiempo, antes de que la oportunidad se enfríe.
               </motion.p>
 
               <motion.div
@@ -163,7 +163,7 @@ export function Home() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 bg-white text-[#7F77DD] px-8 py-4 rounded-xl border-2 border-[#7F77DD] hover:bg-[#7F77DD] hover:text-white transition-colors"
                 >
-                  Agenda tu sesión discovery
+                  Agenda una conversación
                 </a>
               </motion.div>
             </motion.div>
