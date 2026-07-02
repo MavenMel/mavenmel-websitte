@@ -141,7 +141,7 @@ export function Home() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-xl text-[#26215C]/70 max-w-lg leading-relaxed"
               >
-                Convertimos la información que ya tienes en decisiones que puedes tomar a tiempo, antes de que la oportunidad se enfríe.
+                Te ayudamos a que tu organización vea, decida y mida: datos con responsable, decisiones con criterio y resultados que puedes probar.
               </motion.p>
 
               <motion.div
