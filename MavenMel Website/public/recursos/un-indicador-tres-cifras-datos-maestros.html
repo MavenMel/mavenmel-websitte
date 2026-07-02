@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Un mismo indicador, tres cifras distintas: el problema de los datos maestros | Maven Mel</title>
+  <meta name="description" content="Cuando el mismo indicador da un número distinto en cada área, el problema no es el Excel: son los datos maestros y las definiciones sin gobierno. Cómo empezar a resolverlo." />
+  <meta name="keywords" content="datos maestros, un mismo indicador cifras distintas, por que mis reportes no cuadran, gobierno de datos, calidad de datos, master data, Maven Mel" />
+  <meta name="author" content="Maven Mel" />
+  <link rel="canonical" href="https://mavenmel.com/recursos/un-indicador-tres-cifras-datos-maestros.html" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Un mismo indicador, tres cifras distintas: el problema de los datos maestros" />
+  <meta property="og:description" content="Cuando el mismo indicador da un número distinto en cada área, el problema no es el Excel: son los datos maestros." />
+  <meta property="og:url" content="https://mavenmel.com/recursos/un-indicador-tres-cifras-datos-maestros.html" />
+  <meta property="og:image" content="https://mavenmel.com/og-image.png" />
+  <meta property="og:site_name" content="Maven Mel" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Un mismo indicador, tres cifras distintas" />
+  <meta name="twitter:description" content="El problema no es el Excel: son los datos maestros y las definiciones sin gobierno." />
+  <meta name="twitter:image" content="https://mavenmel.com/og-image.png" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/recursos/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Un mismo indicador, tres cifras distintas: el problema de los datos maestros",
+    "description": "Cuando el mismo indicador da un número distinto en cada área, el problema no es el Excel: son los datos maestros y las definiciones sin gobierno.",
+    "datePublished": "2026-07-02",
+    "dateModified": "2026-07-02",
+    "image": "https://mavenmel.com/og-image.png",
+    "author": { "@type": "Organization", "name": "Maven Mel", "url": "https://mavenmel.com" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Maven Mel",
+      "logo": { "@type": "ImageObject", "url": "https://mavenmel.com/favicon.svg" }
+    },
+    "mainEntityOfPage": "https://mavenmel.com/recursos/un-indicador-tres-cifras-datos-maestros.html"
+  }
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K1NRCBK26T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-K1NRCBK26T');
+  </script>
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="brand" href="/"><img src="/favicon.svg" alt="Maven Mel" />Maven Mel<span class="dot">.</span></a>
+    <nav class="topnav">
+      <a href="/recursos/">Recursos</a>
+      <a href="/servicios">Servicios</a>
+      <a href="/contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <div class="wrap">
+    <div class="breadcrumb"><a href="/">Inicio</a> › <a href="/recursos/">Recursos</a> › Un mismo indicador, tres cifras distintas</div>
+
+    <article>
+      <div class="eyebrow">Gobierno de datos</div>
+      <h1>Un mismo indicador, tres cifras distintas</h1>
+      <div class="meta">Por Maven Mel · 2 de julio de 2026 · 4 min de lectura</div>
+
+      <p class="lead">Tres áreas presentan el mismo indicador en la misma reunión, y cada una trae un número diferente. No es un error de cálculo. Es que nunca acordaron qué están midiendo.</p>
+
+      <h2>La reunión donde nadie tiene la razón</h2>
+      <p>Comercial dice que la venta del mes fue una cifra. Finanzas trae otra. Operaciones, una tercera. Los tres tienen razón dentro de su propia lógica: uno resta devoluciones, otro no; uno cuenta la fecha de la orden, otro la de la entrega; uno incluye un canal que el otro excluye. Media reunión se va en decidir <strong>cuál número es el bueno</strong>, y se acaba sin decidir lo que importaba.</p>
+      <p>Cuando esto pasa una vez, es un malentendido. Cuando pasa todos los meses, es un problema de gobierno.</p>
+
+      <h2>No es un problema de Excel, es de definiciones</h2>
+      <p>La tentación es culpar a la herramienta: "el tablero está mal", "el Excel tiene un error". Pero casi nunca es eso. El número no cuadra porque <strong>no existe una sola definición de qué significa "venta", "cliente" o "cumplimiento"</strong> para toda la organización. Cada área construyó la suya, y las tres son válidas por separado. El costo aparece cuando hay que sumarlas.</p>
+      <p>Ninguna herramienta de analítica arregla esto. Se puede tener el mejor tablero del mundo alimentado por definiciones que no coinciden, y seguir sin poder confiar en el número.</p>
+
+      <h2>Datos maestros: el acuerdo antes del número</h2>
+      <p>Los datos maestros son las piezas que toda la empresa usa una y otra vez: clientes, productos, proveedores, contratos, empleados. Si el mismo cliente está creado dos veces con nombres distintos, o si cada área nombra los productos a su manera, cualquier análisis que los cruce va a dar diferente. Y va a dar diferente <em>siempre</em>, por más que se revise el cálculo.</p>
+      <p>Gobernar los datos maestros es ponerse de acuerdo, antes de medir, en tres cosas:</p>
+      <ul>
+        <li><strong>Una sola definición</strong> por cada elemento clave y por cada indicador que dependa de él.</li>
+        <li><strong>Una sola forma de crearlo</strong>, para que no nazcan duplicados ni nombres inventados sobre la marcha.</li>
+        <li><strong>Un responsable</strong> que mantenga esa definición y la haga respetar.</li>
+      </ul>
+
+      <h2>Cómo empezar sin frenar la operación</h2>
+      <p>No hace falta rehacerlo todo. Se empieza por el indicador que más ruido genera en las reuniones, se acuerda su definición por escrito, se identifica de qué maestros depende y se limpia solo eso. Con un par de indicadores acordados, la reunión cambia de tema: deja de discutir el número y empieza a discutir qué hacer con él.</p>
+      <blockquote>El dato es el medio, la decisión es el producto, el resultado la evidencia.</blockquote>
+      <p>Un número en el que todos confían no es un lujo técnico. Es la condición para que la gerencia pueda decidir sin abrir primero un debate sobre si el dato es cierto.</p>
+    </article>
+
+    <div class="cta">
+      <h3>¿Tus indicadores cuadran entre áreas?</h3>
+      <p>Conversemos sobre cómo poner orden en tus datos maestros para que un mismo número signifique lo mismo en toda la empresa. Sin presentación de ventas.</p>
+      <a class="btn" href="/contacto">Hablemos</a>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <p><a href="/">Maven Mel</a> · El dato es el medio, la decisión es el producto.</p>
+  </footer>
+
+</body>
+</html>
