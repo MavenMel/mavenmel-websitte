@@ -5,6 +5,17 @@ export default async (req: Request) => {
     return new Response("Método no permitido", { status: 405 });
   }
 
+  const apiKey = process.env.BREVO_API_KEY;
+  if (!apiKey) {
+    // Falta la variable de entorno: no llamamos a Brevo con una key vacía
+    // (así el usuario nunca ve el error crudo "authentication not found in headers").
+    console.error("[diagnostico-lead] Falta BREVO_API_KEY en el entorno de Netlify.");
+    return new Response(
+      JSON.stringify({ error: "No pudimos registrar tus datos en este momento. Intenta de nuevo más tarde." }),
+      { status: 500 }
+    );
+  }
+
   try {
     const { email, nombre, telefono, empresa } = await req.json();
 
@@ -20,7 +31,7 @@ export default async (req: Request) => {
       headers: {
         accept: "application/json",
         "content-type": "application/json",
-        "api-key": process.env.BREVO_API_KEY as string,
+        "api-key": apiKey,
       },
       body: JSON.stringify({
         email,
@@ -40,15 +51,19 @@ export default async (req: Request) => {
         { status: 200 }
       );
     } else {
-      const errorData = await response.json();
+      // Registramos el error real de Brevo en los logs de la función,
+      // pero NO se lo mostramos al usuario final.
+      const errorData = await response.json().catch(() => ({}));
+      console.error("[diagnostico-lead] Error de Brevo:", response.status, errorData);
       return new Response(
-        JSON.stringify({ error: errorData.message }),
-        { status: 500 }
+        JSON.stringify({ error: "No pudimos registrar tus datos en este momento. Intenta de nuevo más tarde." }),
+        { status: 502 }
       );
     }
-  } catch {
+  } catch (err) {
+    console.error("[diagnostico-lead] Error de servidor:", err);
     return new Response(
-      JSON.stringify({ error: "Error de servidor" }),
+      JSON.stringify({ error: "Error de servidor. Intenta de nuevo." }),
       { status: 500 }
     );
   }

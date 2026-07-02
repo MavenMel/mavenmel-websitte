@@ -20,7 +20,8 @@ export function Contacto() {
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false); // <--- PARA EL BOTÓN
   const [autorizo, setAutorizo] = useState(false);
-  
+  const [error, setError] = useState("");
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!autorizo) {
@@ -29,6 +30,7 @@ export function Contacto() {
     }
 
     setIsLoading(true);
+    setError("");
 
     // --- LÓGICA ANTISPAM HONEPYOT ---
     const form = e.target as HTMLFormElement;
@@ -55,9 +57,11 @@ export function Contacto() {
         setSubmitted(true);
         setFormData({ nombre: "", email: "", telefono: "", empresa: "", mensaje: "" });
         setAutorizo(false);
+      } else {
+        setError("No pudimos enviar tu mensaje. Escríbeme a info@mavenmel.com o por WhatsApp y con gusto te respondo.");
       }
-    } catch (error) {
-      alert("Error al enviar el mensaje.");
+    } catch {
+      setError("No se pudo conectar. Revisa tu conexión e intenta de nuevo.");
     } finally {
       setIsLoading(false);
     }
@@ -160,6 +164,10 @@ export function Contacto() {
                         </p>
                       </div>
                     </div>
+
+                    {error && (
+                      <p className="text-sm text-[#D4537E] font-medium text-center">{error}</p>
+                    )}
 
                     <button
                       type="submit"

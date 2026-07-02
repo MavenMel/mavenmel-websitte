@@ -6,8 +6,8 @@ import { useState } from "react";
 
 export function Home() {
   usePageMeta(
-    "MavenMel | Coaching Analítico para Líderes",
-    "Coaching analítico 1:1 para líderes. Convierte la información que ya tienes en decisiones que mueven tu P&L."
+    "Maven Mel | De los datos a decisiones que mueven el negocio",
+    "Consultoría que convierte la información que tu empresa ya tiene en decisiones a tiempo. Para líderes que responden por resultados."
   );
   const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
@@ -66,9 +66,9 @@ export function Home() {
     },
     {
       icon: TrendingUp,
-      title: "Coaching Analítico",
-      description: "Acompañamiento estratégico para que cada decisión importante esté respaldada por evidencia y mueva el margen.",
-      subtitle: "Acompañamiento 1:1",
+      title: "Acompañamiento",
+      description: "Un aliado estratégico para que cada decisión importante esté respaldada por evidencia y mueva el margen.",
+      subtitle: "Decisiones recurrentes",
       link: "/servicios",
     },
     {
@@ -129,9 +129,9 @@ export function Home() {
                   El dato es el medio. La decisión es el producto.
                 </p>
                 <h1 className="text-5xl lg:text-7xl font-bold text-[#26215C] leading-tight">
-                  Las decisiones de hoy
+                  Tu empresa no tiene un problema de datos.
                   <br />
-                  <span className="text-[#7F77DD]">definen tu P&L de mañana.</span>
+                  <span className="text-[#7F77DD]">Tiene demasiados.</span>
                 </h1>
               </motion.div>
 
@@ -141,7 +141,7 @@ export function Home() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-xl text-[#26215C]/70 max-w-lg leading-relaxed"
               >
-                Trabajo 1:1 con líderes para que sus decisiones críticas dejen de tomarse a ciegas y empiecen a mover el margen.
+                Convertimos la información que ya tienes en decisiones que puedes tomar a tiempo, antes de que la oportunidad se enfríe.
               </motion.p>
 
               <motion.div
@@ -163,7 +163,7 @@ export function Home() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 bg-white text-[#7F77DD] px-8 py-4 rounded-xl border-2 border-[#7F77DD] hover:bg-[#7F77DD] hover:text-white transition-colors"
                 >
-                  Agenda tu sesión discovery
+                  Agenda una conversación
                 </a>
               </motion.div>
             </motion.div>
@@ -201,8 +201,8 @@ export function Home() {
                 <p className="text-sm text-[#26215C]/60">años en transformación analítica</p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-[#7F77DD]">1:1</p>
-                <p className="text-sm text-[#26215C]/60">acompañamiento a líderes</p>
+                <p className="text-3xl font-bold text-[#7F77DD]">C.L.A.R.O.</p>
+                <p className="text-sm text-[#26215C]/60">método propio de decisión</p>
               </div>
               <div>
                 <p className="text-3xl font-bold text-[#7F77DD]">LATAM</p>
@@ -336,7 +336,7 @@ export function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { n: "01", t: "Diagnóstico", d: "Entendemos tu negocio y dónde se están tomando decisiones críticas sin información confiable." },
-              { n: "02", t: "Diseño y acompañamiento", d: "Construimos las piezas que tus decisiones necesitan y te acompaño 1:1 para que tu equipo las adopte." },
+              { n: "02", t: "Diseño y acompañamiento", d: "Construimos las piezas que tus decisiones necesitan y acompañamos a tu equipo para que las adopte." },
               { n: "03", t: "Decisiones que mueven el P&L", d: "Tu equipo decide con evidencia y el impacto se ve en el margen, no en un tablero más." },
             ].map((s, i) => (
               <motion.div
